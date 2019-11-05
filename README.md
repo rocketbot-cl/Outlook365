@@ -1,5 +1,5 @@
 # Outlook
-Module to read, send, create folder and move email, for Outlook
+Module to read, send, create folder and move email, for Outlook (Office 365)
 
 **In the example robot you must change the URL and credentials for yours.
 
