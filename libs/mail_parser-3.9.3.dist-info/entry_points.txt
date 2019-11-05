@@ -1,0 +1,3 @@
+[console_scripts]
+mailparser = mailparser.__main__:main
+
