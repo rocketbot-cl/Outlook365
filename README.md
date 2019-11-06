@@ -5,7 +5,7 @@ Module to read, send, create folder and move email, for Outlook (Office 365)
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/Outlook/master/example/outlook.png)
 
-<h2>Dependences</h2>
+<h2>Dependencies</h2>
 
 <ul>
   <li>
