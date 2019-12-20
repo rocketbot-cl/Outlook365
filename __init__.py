@@ -105,7 +105,7 @@ if module == "send_mail":
         msg['To'] = to
         msg['Subject'] = subject
         body = body_
-        msg.attach(MIMEText(body, 'plain'))
+        msg.attach(MIMEText(body, 'html'))
 
         if attached_file:
             if os.path.exists(attached_file):
@@ -121,8 +121,10 @@ if module == "send_mail":
         server.sendmail(fromaddr, to.split(","), text)
         server.close()
 
+
     except Exception as e:
         PrintException()
+        raise e
 
 if module == "get_mail":
     filtro = GetParams('filtro')
