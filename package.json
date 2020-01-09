@@ -425,7 +425,7 @@
 
                     {
                         "type": "input",
-                        "placeholder":"Ingrese nombre de la etiqueta",
+                        "placeholder":"Ingrese nombre de la carpeta",
                         "title": {
                             "es": "Nombre Carpeta:",
                             "en": "Folder Name:",
