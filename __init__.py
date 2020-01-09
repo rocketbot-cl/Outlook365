@@ -119,7 +119,7 @@ if module == "send_mail":
                 msg.attach(part)
         text = msg.as_string()
         server.sendmail(fromaddr, to.split(","), text)
-        server.close()
+        #server.close()
 
 
     except Exception as e:
@@ -260,7 +260,7 @@ if module == "reply_email":
         to_ = mm['From'].split("<")[1].replace(">", "")
         print(fromaddr, to_)
         server.sendmail(fromaddr, to_, mail__.as_bytes())
-        server.close()
+        #server.close()
         mail.logout()
     except:
         PrintException()
