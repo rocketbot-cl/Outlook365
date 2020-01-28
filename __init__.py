@@ -97,13 +97,15 @@ if module == "send_mail":
     subject = GetParams('subject')
     body_ = GetParams('body')
     attached_file = GetParams('attached_file')
-    print(to, subject, body_, attached_file)
+    #print(to, subject, body_, attached_file)
 
     try:
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = to
         msg['Subject'] = subject
+        if not body_:
+            body_ = ""
         body = body_
         msg.attach(MIMEText(body, 'html'))
 
