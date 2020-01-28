@@ -40,6 +40,8 @@ from bs4 import BeautifulSoup
 import base64
 import re
 
+from future.backports.email.mime.message import MIMEMessage
+
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'Outlook365' + os.sep + 'libs' + os.sep
 # print(cur_path)
@@ -69,6 +71,17 @@ def parse_uid(tmp):
         pass
     match = pattern_uid.match(tmp)
     return match.group('uid')
+
+
+def make_tmp_dir(name):
+    try:
+        os.mkdir("tmp")
+        os.mkdir("tmp" + os.sep + name)
+    except:
+        try:
+            os.mkdir("tmp" + os.sep + name)
+        except:
+            pass
 
 
 if module == "conf_mail":
@@ -121,7 +134,7 @@ if module == "send_mail":
                 msg.attach(part)
         text = msg.as_string()
         server.sendmail(fromaddr, to.split(","), text)
-        #server.close()
+        # server.close()
 
 
     except Exception as e:
@@ -223,7 +236,6 @@ if module == "reply_email":
         id_ = GetParams('id_')
         body_ = GetParams('body')
         attached_file = GetParams('attached_file')
-        print(body_, attached_file)
 
         mail = imaplib.IMAP4_SSL('outlook.office365.com')
         mail.login(fromaddr, password)
@@ -241,12 +253,14 @@ if module == "reply_email":
         # msg.attach(MIMEText(body_, 'plain'))
 
         #    m_ = create_auto_reply(mm, body_)
+
         mail__ = MIMEMultipart('alternative')
         mail__['Message-ID'] = make_msgid()
         mail__['References'] = mail__['In-Reply-To'] = mm['Message-ID']
         mail__['Subject'] = 'Re: ' + mm['Subject']
-        mail__['From'] = mm['To'] = mm['Reply-To'] or mm['From']
+        mail__['to'] = mm['Reply-To'] or mm['From']
         mail__.attach(MIMEText(dedent(body_), 'plain'))
+        mail__['from'] = mm['to']
 
         if attached_file:
             if os.path.exists(attached_file):
@@ -261,11 +275,12 @@ if module == "reply_email":
 
         to_ = mm['From'].split("<")[1].replace(">", "")
         print(fromaddr, to_)
-        server.sendmail(fromaddr, to_, mail__.as_bytes())
-        #server.close()
+        server.sendmail(fromaddr, mail__['to'], mail__.as_bytes())
+        # server.close()
         mail.logout()
-    except:
+    except Exception as e:
         PrintException()
+        raise e
 
 if module == "create_folder":
     try:
@@ -288,12 +303,6 @@ if module == "move_mail":
     if not label_:
         raise Exception("No ha ingresado carpeta de destino")
     try:
-        # login on IMAP server
-        # if imap.IMAP_SSL:
-        #     mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        # else:
-        #     mail = imaplib.IMAP4('outlook.office365.com')
-
         mail = imaplib.IMAP4_SSL('outlook.office365.com')
         mail.login(fromaddr, password)
         mail.select('inbox', readonly=False)
@@ -311,4 +320,69 @@ if module == "move_mail":
         else:
             raise Exception(result)
     except Exception as e:
+        raise e
+
+if module == "forward":
+
+    try:
+        id_ = GetParams('id_')
+        to_ = GetParams('email')
+        attached_file = GetParams('attached_file')
+
+        mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        mail.login(fromaddr, password)
+        mail.select("inbox")
+        server = smtplib.SMTP('smtp.office365.com', 587)
+        server.starttls()
+        server.login(fromaddr, password)
+
+        # mail.select()
+        typ, data = mail.fetch(id_, '(RFC822)')
+        raw_email = data[0][1]
+        mm = email.message_from_bytes(raw_email)
+
+        make_tmp_dir('Outlook365')
+        raw_email_string = raw_email.decode('utf-8')
+        email_message = email.message_from_string(raw_email_string)
+        mail_ = mailparser.parse_from_string(raw_email_string)
+        try:
+            bs = BeautifulSoup(mail_.body, 'html.parser').body.get_text()
+        except:
+            bs = mail_.body
+
+        bs = bs.split('--- mail_boundary ---')[0]
+        nameFile = []
+
+        for att in mail_.attachments:
+            name_ = att['filename']
+            nameFile.append(name_)
+            fileb = att['payload']
+            cont = base64.b64decode(fileb)
+            with open(os.path.join("tmp/Outlook365", name_), 'wb') as file_:
+                file_.write(cont)
+                file_.close()
+
+        mail__ = MIMEMultipart('alternative')
+        mail__['Message-ID'] = make_msgid()
+        mail__['Subject'] = 'Forward: ' + mm['Subject']
+        mail__['to'] = to_
+        mail__.attach(MIMEText(dedent(bs), 'plain'))
+        mail__['from'] = mm['to']
+
+        for a in nameFile:
+            attached_file = "tmp/Outlook365/" + a
+            filename = os.path.basename(attached_file)
+            attachment = open(attached_file, "rb")
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload((attachment).read())
+            attachment.close()
+            encoders.encode_base64(part)
+            part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+            mail__.attach(part)
+
+        server.sendmail(fromaddr, mail__['to'], mail__.as_bytes())
+        # server.close()
+        mail.logout()
+    except Exception as e:
+        PrintException()
         raise e
