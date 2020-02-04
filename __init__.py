@@ -386,3 +386,16 @@ if module == "forward":
     except Exception as e:
         PrintException()
         raise e
+
+if module == "list_folders":
+    try:
+        result = GetParams('var')
+        host = "outlook.office365.com"
+        mail = imaplib.IMAP4_SSL(host)
+        mail.login(fromaddr, password)
+        folders = [folder.decode().split('"/"')[1] for folder in mail.list()[1]]
+
+        SetVar(result, folders)
+
+    except:
+        PrintException()
