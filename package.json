@@ -222,6 +222,20 @@
                     },
                     {
                         "type": "input",
+                        "placeholder": "345",
+                        "title": {
+                            "es": "Carpeta",
+                            "en": "Folder"
+                        },
+                        "help": {
+                            "es": "Por defecto, Inbox",
+                            "en": "By default, Inbox"                            
+                        },
+                        "id": "folder",
+                        "css": "col-md-6"
+                    },
+                    {
+                        "type": "input",
                         "placeholder": "Variable",
                         "title": {
                             "es": "Asignar a variable:",
@@ -234,7 +248,7 @@
                             "cn": "Var name whitout {}"
                         },
                         "id": "var_",
-                        "css": "col-md-12"
+                        "css": "col-md-6"
                     }
                 ]
             },
@@ -291,6 +305,20 @@
                     },
                     {
                         "type": "input",
+                        "placeholder": "inbox",
+                        "title": {
+                            "es": "Carpeta",
+                            "en": "Folder"
+                        },
+                        "help": {
+                            "es": "Por defecto, Inbox",
+                            "en": "By default, Inbox"                            
+                        },
+                        "id": "folder",
+                        "css": "col-md-6"
+                    },
+                    {
+                        "type": "input",
                         "placeholder": "Variable",
                         "title": {
                             "es": "Asignar a variable:",
@@ -303,7 +331,7 @@
                             "cn": "Var name whitout {}"
                         },
                         "id": "var_",
-                        "css": "col-md-12"
+                        "css": "col-md-6"
                     }
                 ]
             },
@@ -355,6 +383,20 @@
                     },
                     {
                         "type": "input",
+                        "placeholder": "inbox",
+                        "title": {
+                            "es": "Carpeta",
+                            "en": "Folder"
+                        },
+                        "help": {
+                            "es": "Por defecto, Inbox",
+                            "en": "By default, Inbox"                            
+                        },
+                        "id": "folder",
+                        "css": "col-md-6"
+                    },
+                    {
+                        "type": "input",
                         "placeholder": "Variable",
                         "title": {
                             "es": "Asignar a variable:",
@@ -378,7 +420,7 @@
                             "cn": "Path for download attachment:"
                         },
                         "id": "att_folder",
-                        "css": "col-md-12"
+                        "css": "col-md-6"
                     }
                 ]
             },

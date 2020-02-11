@@ -144,12 +144,16 @@ if module == "send_mail":
 if module == "get_mail":
     filtro = GetParams('filtro')
     var_ = GetParams('var_')
+    folder = GetParams("folder")
+    
+    if not folder:
+        folder = "inbox"
 
     mail = imaplib.IMAP4_SSL('outlook.office365.com')
     mail.login(fromaddr, password)
     mail.list()
     # Out: list of "folders" aka labels in gmail.
-    mail.select("inbox")  # connect to inbox.
+    mail.select(folder)  # connect to inbox.
 
     if filtro and len(filtro) > 0:
         result, data = mail.search(None, filtro, "ALL")
@@ -166,12 +170,16 @@ if module == "get_mail":
 if module == "get_unread":
     filtro = GetParams('filtro')
     var_ = GetParams('var_')
+    folder = GetParams("folder")
+    
+    if not folder:
+        folder = "inbox"
 
     mail = imaplib.IMAP4_SSL('outlook.office365.com')
     mail.login(fromaddr, password)
     mail.list()
     # Out: list of "folders" aka labels in gmail.
-    mail.select("inbox")  # connect to inbox.
+    mail.select(folder)  # connect to inbox.
 
     if filtro and len(filtro) > 0:
         result, data = mail.search(None, filtro, "UNSEEN")
@@ -190,10 +198,14 @@ if module == "read_mail":
     id_ = GetParams('id_')
     var_ = GetParams('var_')
     att_folder = GetParams('att_folder')
+    folder = GetParams("folder")
+
+    if not folder:
+        folder = "inbox"
 
     mail = imaplib.IMAP4_SSL('outlook.office365.com')
     mail.login(fromaddr, password)
-    mail.select("inbox")
+    mail.select(folder)
 
     # mail.select()
     typ, data = mail.fetch(id_, '(RFC822)')
