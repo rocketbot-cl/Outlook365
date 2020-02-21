@@ -411,3 +411,15 @@ if module == "list_folders":
 
     except:
         PrintException()
+
+if module == "markAsUnread":
+    id_ = GetParams("id_")
+    var = GetParams("var")
+
+    mail = imaplib.IMAP4_SSL('outlook.office365.com')
+    mail.login(fromaddr, password)
+    mail.select('inbox', readonly=False)
+    resp, data = mail.fetch(id_, "(UID)")
+    msg_uid = parse_uid(data[0])
+
+    data = mail.uid('STORE', msg_uid, '-FLAGS', '(\Seen)')
