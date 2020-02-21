@@ -423,3 +423,5 @@ if module == "markAsUnread":
     msg_uid = parse_uid(data[0])
 
     data = mail.uid('STORE', msg_uid, '-FLAGS', '(\Seen)')
+
+    print(data)
