@@ -414,11 +414,15 @@ if module == "list_folders":
 
 if module == "markAsUnread":
     id_ = GetParams("id_")
+    folder = GetParams("folder")
     var = GetParams("var")
+
+    if not folder:
+        folder = "inbox"
 
     mail = imaplib.IMAP4_SSL('outlook.office365.com')
     mail.login(fromaddr, password)
-    mail.select('inbox', readonly=False)
+    mail.select(folder, readonly=False)
     resp, data = mail.fetch(id_, "(UID)")
     msg_uid = parse_uid(data[0])
 

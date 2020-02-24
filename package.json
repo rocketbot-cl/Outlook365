@@ -742,7 +742,17 @@
             "form": {
                 "css": "modal-lg",
                 "inputs": [
-
+                    {
+                        "type": "input",
+                        "placeholder": "inbox",
+                        "title": {
+                            "es": "Nombre Carpeta:",
+                            "en": "Folder Name:",
+                            "cn": "Folder Name:"
+                        },
+                        "id": "folder",
+                        "css": "col-md-12"
+                    },
                     {
                         "type": "input",
                         "placeholder":"Ingrese ID del email",
