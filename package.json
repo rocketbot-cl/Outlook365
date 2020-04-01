@@ -537,11 +537,21 @@
                         "type": "input",
                         "placeholder": "test",
                         "title": {
-                            "es": "Nombre de la carpeta:",
-                            "en": "Folder Name:",
-                            "cn": "Folder Name:"
+                            "es": "Carpeta de destino:",
+                            "en": "Folder name to send:"
                         },
                         "id": "label_",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": "test",
+                        "title": {
+                            "es": "Nombre de la carpeta de origen:",
+                            "en": "From:",
+                            "cn": "From:"
+                        },
+                        "id": "from",
                         "css": "col-md-12"
                     },
                     {

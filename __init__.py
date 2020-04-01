@@ -317,16 +317,19 @@ if module == "move_mail":
     # imap = GetGlobals('email')
     id_ = GetParams("id_")
     label_ = GetParams("label_")
+    from_ = GetParams("from")
     var = GetParams("var")
 
     if not id_:
         raise Exception("No ha ingresado ID de email a mover")
     if not label_:
         raise Exception("No ha ingresado carpeta de destino")
+    if not from_:
+        from_ = "inbox"
     try:
         mail = imaplib.IMAP4_SSL('outlook.office365.com')
         mail.login(fromaddr, password)
-        mail.select('inbox', readonly=False)
+        mail.select(from_, readonly=False)
         resp, data = mail.fetch(id_, "(UID)")
         msg_uid = parse_uid(data[0])
 
