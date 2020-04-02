@@ -106,12 +106,18 @@ if module == "conf_mail":
     SetVar(var_, conx)
 
 if module == "send_mail":
-    to = GetParams('to')
-    subject = GetParams('subject')
-    body_ = GetParams('body')
-    attached_file = GetParams('attached_file')
-    #print(to, subject, body_, attached_file)
-    cc = GetParams('cc')
+
+    try:
+        to = GetParams('to')
+        subject = GetParams('subject')
+        body_ = GetParams('body')
+        cc = GetParams('cc')
+        attached_file = GetParams('attached_file')
+        files = GetParams('attached_folder')
+        filenames = []
+
+    except:
+        PrintException()
 
     try:
         msg = MIMEMultipart()
@@ -131,16 +137,35 @@ if module == "send_mail":
         body = body_
         msg.attach(MIMEText(body, 'html'))
 
-        if attached_file:
-            if os.path.exists(attached_file):
-                filename = os.path.basename(attached_file)
-                attachment = open(attached_file, "rb")
-                part = MIMEBase('application', 'octet-stream')
-                part.set_payload((attachment).read())
-                attachment.close()
-                encoders.encode_base64(part)
-                part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
-                msg.attach(part)
+        if files:
+            for f in os.listdir(files):
+                f = os.path.join(files, f)
+                filenames.append(f)
+
+
+            if filenames:
+                for file in filenames:
+                    filename = os.path.basename(file)
+                    attachment = open(file, "rb")
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload((attachment).read())
+                    attachment.close()
+                    encoders.encode_base64(part)
+                    part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+                    msg.attach(part)
+
+        else:
+            if attached_file:
+                if os.path.exists(attached_file):
+                    filename = os.path.basename(attached_file)
+                    attachment = open(attached_file, "rb")
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload((attachment).read())
+                    attachment.close()
+                    encoders.encode_base64(part)
+                    part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+                    msg.attach(part)
+
         text = msg.as_string()
         server.sendmail(fromaddr, toAddress, text)
         # server.close()

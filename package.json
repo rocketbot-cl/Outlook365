@@ -2,7 +2,7 @@
     "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>",
     "description": "Módulo para realizar acciones en Outlook Office 365",
     "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-    "version": "0.6",
+    "version": "0.7",
     "license": "MIT",
     "homepage": "http://rocketbot.co/",
     "linux": true,
@@ -179,7 +179,29 @@
                             "en": "Attached File:",
                             "cn": "Attached File:"
                         },
+                        "help": {
+                            "es": "Opción para solo un adjunto, si además se ingresa carpeta sólo se considerará esta última",
+                            "en": "Option for only one attachment, if you also enter a folder only the latter will be considered"
+                        },
                         "id": "attached_file",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "folder_select",
+                        "placeholder": {
+                            "es": "C:\\User\\Desktop\\Files",
+                            "en": "C:\\User\\Desktop\\Files",
+                            "cn": "C:\\User\\Desktop\\Files"
+                        },
+                        "title": {
+                            "es": "Carpeta (Varios archivos):",
+                            "en": "Folder (Multiple files):"
+                        },
+                        "help": {
+                            "es": "Para varios adjuntos, ingresar ruta a carpeta",
+                            "en": "For several attachments, enter folder path"
+                        },
+                        "id": "attached_folder",
                         "css": "col-md-12"
                     }
                 ]
