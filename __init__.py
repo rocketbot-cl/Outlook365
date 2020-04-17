@@ -466,3 +466,6 @@ if module == "markAsUnread":
     data = mail.uid('STORE', msg_uid, '-FLAGS', '(\Seen)')
 
     print(data)
+
+if module == "close":
+    server.close()
