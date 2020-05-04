@@ -91,13 +91,15 @@ if module == "conf_mail":
     try:
         fromaddr = GetParams('from')
         password = GetParams('password')
+        print(password)
         var_ = GetParams('var_')
 
-        mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        mail.login(fromaddr, password)
+        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        # mail.login(fromaddr, password)
         server = smtplib.SMTP('smtp.office365.com', 587)
         server.starttls()
         server.login(fromaddr, password)
+    
         conx = True
     except:
         PrintException()

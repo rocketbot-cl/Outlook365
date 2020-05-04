@@ -1,6 +1,21 @@
 # Outlook
 Module to read, send, create folder and move email, for Outlook (Office 365)
 
+<ul id="commands_readme">
+    <li>Server Configuration</li>
+    <li>Send Email</li>
+    <li>List all Email</li>
+    <li>List unread emails</li>
+    <li>Read email for ID</li>
+    <li>Create Folder</li>
+    <li>Move email to folder</li>
+    <li>Reply email for ID</li>
+    <li>Forward email ID</li>
+    <li>List Folders</li>
+    <li>Mark email as unread</li>
+    <li>Close Server</li>
+</ul>
+
 **In the example robot you must change the URL and credentials for yours.
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/Outlook/master/example/outlook.png)
