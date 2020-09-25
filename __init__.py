@@ -48,7 +48,7 @@ cur_path = base_path + 'modules' + os.sep + 'Outlook365' + os.sep + 'libs' + os.
 sys.path.append(cur_path)
 # print(cur_path )
 
-# from mailparser import mailparser
+from mailparser import mailparser
 
 global fromaddr
 global server
