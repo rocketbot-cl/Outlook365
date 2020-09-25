@@ -48,7 +48,7 @@ cur_path = base_path + 'modules' + os.sep + 'Outlook365' + os.sep + 'libs' + os.
 sys.path.append(cur_path)
 # print(cur_path )
 
-from mailparser import mailparser
+# from mailparser import mailparser
 
 global fromaddr
 global server
@@ -91,7 +91,7 @@ if module == "conf_mail":
     try:
         fromaddr = GetParams('from')
         password = GetParams('password')
-        print(password)
+
         var_ = GetParams('var_')
 
         # mail = imaplib.IMAP4_SSL('outlook.office365.com')
@@ -182,26 +182,35 @@ if module == "get_mail":
     var_ = GetParams('var_')
     folder = GetParams("folder")
     
-    if not folder:
-        folder = "inbox"
+    try:
+        if not folder:
+            folder = "inbox"
 
-    mail = imaplib.IMAP4_SSL('outlook.office365.com')
-    mail.login(fromaddr, password)
-    mail.list()
-    # Out: list of "folders" aka labels in gmail.
-    mail.select(folder)  # connect to inbox.
+        try:
+            mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        except:
+            mail = imaplib.IMAP4('outlook.office365.com')
 
-    if filtro and len(filtro) > 0:
-        result, data = mail.search(None, filtro, "ALL")
-    else:
-        result, data = mail.search(None, "ALL")
+        print(fromaddr, password)
+        mail.login(fromaddr, password)
+        mail.list()
+        # Out: list of "folders" aka labels in gmail.
+        mail.select(folder)  # connect to inbox.
 
-    ids = data[0]  # data is a list.
-    id_list = ids.split()  # ids is a space separated string
-    lista = [b.decode() for b in id_list]
+        if filtro and len(filtro) > 0:
+            result, data = mail.search(None, filtro, "ALL")
+        else:
+            result, data = mail.search(None, "ALL")
 
-    # print('ID',id_list)
-    SetVar(var_, lista)
+        ids = data[0]  # data is a list.
+        id_list = ids.split()  # ids is a space separated string
+        lista = [b.decode() for b in id_list]
+
+        # print('ID',id_list)
+        SetVar(var_, lista)
+    except Exception as e:
+        PrintException()
+        raise e
 
 if module == "get_unread":
     filtro = GetParams('filtro')
