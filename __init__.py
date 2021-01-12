@@ -40,7 +40,7 @@ from bs4 import BeautifulSoup
 import base64
 import re
 
-from future.backports.email.mime.message import MIMEMessage
+from email.mime.message import MIMEMessage
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'Outlook365' + os.sep + 'libs' + os.sep
@@ -50,39 +50,35 @@ sys.path.append(cur_path)
 
 from mailparser import mailparser
 
-global fromaddr
-global server
-global password
-global mail
-global id_
 
 """
     Obtengo el modulo que fue invocado
 """
 module = GetParams("module")
 
+class Outlook365:
 
-def parse_uid(tmp):
-    pattern_uid = re.compile('\d+ \(UID (?P<uid>\d+)\)')
-    print('tmp', tmp)
-    try:
-        tmp = tmp.decode()
-    except:
-        pass
-    match = pattern_uid.match(tmp)
-    return match.group('uid')
+    def __init__(self, user, pwd):
+        self.user = user
+        self.pwd = pwd
 
+    def connect_smtp(self):
+        server_ = smtplib.SMTP('smtp.office365.com', 587)
+        server_.starttls()
+        server_.login(self.user, self.pwd)
+        return server_
 
-def make_tmp_dir(name):
-    try:
-        os.mkdir("tmp")
-        os.mkdir("tmp" + os.sep + name)
-    except:
+    def connect_imap(self):
         try:
-            os.mkdir("tmp" + os.sep + name)
+            mail = imaplib.IMAP4_SSL('outlook.office365.com', 993)
         except:
-            pass
+            mail = imaplib.IMAP4('outlook.office365.com', 993)
 
+        mail.login(self.user, self.pwd)
+        return mail
+
+
+global outlook_365
 
 if module == "conf_mail":
 
@@ -94,11 +90,12 @@ if module == "conf_mail":
 
         var_ = GetParams('var_')
 
-        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        # mail.login(fromaddr, password)
-        server = smtplib.SMTP('smtp.office365.com', 587)
-        server.starttls()
-        server.login(fromaddr, password)
+        outlook_365 = Outlook365(fromaddr, password)
+        server = outlook_365.connect_smtp()
+
+        # server = smtplib.SMTP('smtp.office365.com', 587)
+        # server.starttls()
+        # server.login(fromaddr, password)
     
         conx = True
     except:
@@ -123,7 +120,7 @@ if module == "send_mail":
 
     try:
         msg = MIMEMultipart()
-        msg['From'] = fromaddr
+        msg['From'] = outlook_365.user
         msg['To'] = to
         msg['Cc'] = cc
         msg['Subject'] = subject
@@ -169,6 +166,8 @@ if module == "send_mail":
                     msg.attach(part)
 
         text = msg.as_string()
+        server = outlook_365.connect_smtp()
+        fromaddr = outlook_365.user
         server.sendmail(fromaddr, toAddress, text)
         # server.close()
 
@@ -186,13 +185,13 @@ if module == "get_mail":
         if not folder:
             folder = "inbox"
 
-        try:
-            mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        except:
-            mail = imaplib.IMAP4('outlook.office365.com')
-
-        print(fromaddr, password)
-        mail.login(fromaddr, password)
+        # try:
+        #     mail = imaplib.IMAP4_SSL('outlook.office365.com', 993)
+        # except:
+        #     mail = imaplib.IMAP4('outlook.office365.com', 993)
+        #
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
         mail.list()
         # Out: list of "folders" aka labels in gmail.
         mail.select(folder)  # connect to inbox.
@@ -220,16 +219,18 @@ if module == "get_unread":
     if not folder:
         folder = "inbox"
 
-    mail = imaplib.IMAP4_SSL('outlook.office365.com')
-    mail.login(fromaddr, password)
+
+    mail = outlook_365.connect_imap()
     mail.list()
     # Out: list of "folders" aka labels in gmail.
     mail.select(folder)  # connect to inbox.
 
     if filtro and len(filtro) > 0:
         result, data = mail.search(None, filtro, "UNSEEN")
+        print(result)
     else:
         result, data = mail.search(None, "UNSEEN")
+        print("result", data)
 
     ids = data[0]  # data is a list.
     id_list = ids.split()  # ids is a space separated string
@@ -248,8 +249,9 @@ if module == "read_mail":
     if not folder:
         folder = "inbox"
 
-    mail = imaplib.IMAP4_SSL('outlook.office365.com')
-    mail.login(fromaddr, password)
+    # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+    # mail.login(fromaddr, password)
+    mail = outlook_365.connect_imap()
     mail.select(folder)
 
     # mail.select()
@@ -294,12 +296,14 @@ if module == "reply_email":
         body_ = GetParams('body')
         attached_file = GetParams('attached_file')
 
-        mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        mail.login(fromaddr, password)
+        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
         mail.select("inbox")
-        server = smtplib.SMTP('smtp.office365.com', 587)
-        server.starttls()
-        server.login(fromaddr, password)
+        server = outlook_365.connect_smtp()
+        # server = smtplib.SMTP('smtp.office365.com', 587)
+        # server.starttls()
+        # server.login(fromaddr, password)
 
         # mail.select()
         typ, data = mail.fetch(id_, '(RFC822)')
@@ -331,7 +335,7 @@ if module == "reply_email":
                 mail__.attach(part)
 
         to_ = mm['From'].split("<")[1].replace(">", "")
-        print(fromaddr, to_)
+        fromaddr = outlook_365.user
         server.sendmail(fromaddr, mail__['to'], mail__.as_bytes())
         # server.close()
         mail.logout()
@@ -342,12 +346,12 @@ if module == "reply_email":
 if module == "create_folder":
     try:
         folder_name = GetParams('folder_name')
-        host = "outlook.office365.com"
-        mail = imaplib.IMAP4_SSL(host)
-        mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
         mail.create(folder_name)
-    except:
+    except Exception as e:
         PrintException()
+        raise e
+
 
 if module == "move_mail":
     # imap = GetGlobals('email')
@@ -355,7 +359,7 @@ if module == "move_mail":
     label_ = GetParams("label_")
     from_ = GetParams("from")
     var = GetParams("var")
-
+    print("id",id_)
     if not id_:
         raise Exception("No ha ingresado ID de email a mover")
     if not label_:
@@ -363,23 +367,38 @@ if module == "move_mail":
     if not from_:
         from_ = "inbox"
     try:
-        mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        mail.login(fromaddr, password)
+        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
+        
         mail.select(from_, readonly=False)
+        
+        def parse_uid(data):
+            import re
+            try:
+                data = data.decode()
+                pattern_uid = re.compile(r'\d+ \(UID (?P<uid>\d+)\)')
+                match = pattern_uid.match(data)
+                return match.group('uid')
+            except Exception as e:
+                PrintException()
+                raise e
+
         resp, data = mail.fetch(id_, "(UID)")
-        msg_uid = parse_uid(data[0])
-
-        result = mail.uid('COPY', msg_uid, label_)
-
-        if result[0] == 'OK':
-            mov, data = mail.uid('STORE', msg_uid, '+FLAGS', '(\Deleted)')
-            res = mail.expunge()
+        # msg = email.message_from_bytes((data[0]))
+        msg = parse_uid(data[0])
+        result = mail.uid('COPY', msg, label_)
+        if result[0] == "OK":
+            mov, data = mail.uid('STORE', msg, '+FLAGS', r'(\Deleted)')
+            ret = mail.expunge()
             if var:
                 ret = True if res[0] == 'OK' else False
                 SetVar(var, ret)
         else:
             raise Exception(result)
+
     except Exception as e:
+        PrintException()
         raise e
 
 if module == "forward":
@@ -389,19 +408,21 @@ if module == "forward":
         to_ = GetParams('email')
         attached_file = GetParams('attached_file')
 
-        mail = imaplib.IMAP4_SSL('outlook.office365.com')
-        mail.login(fromaddr, password)
+        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
         mail.select("inbox")
-        server = smtplib.SMTP('smtp.office365.com', 587)
-        server.starttls()
-        server.login(fromaddr, password)
+        server = outlook_365.connect_smtp()
+        # server = smtplib.SMTP('smtp.office365.com', 587)
+        # server.starttls()
+        # server.login(fromaddr, password)
 
         # mail.select()
         typ, data = mail.fetch(id_, '(RFC822)')
         raw_email = data[0][1]
         mm = email.message_from_bytes(raw_email)
 
-        make_tmp_dir('Outlook365')
+        #make_tmp_dir('Outlook365')
         raw_email_string = raw_email.decode('utf-8')
         email_message = email.message_from_string(raw_email_string)
         mail_ = mailparser.parse_from_string(raw_email_string)
@@ -418,7 +439,7 @@ if module == "forward":
             nameFile.append(name_)
             fileb = att['payload']
             cont = base64.b64decode(fileb)
-            with open(os.path.join("tmp/Outlook365", name_), 'wb') as file_:
+            with open(os.path.join(base_path, name_), 'wb') as file_:
                 file_.write(cont)
                 file_.close()
 
@@ -430,7 +451,7 @@ if module == "forward":
         mail__['from'] = mm['to']
 
         for a in nameFile:
-            attached_file = "tmp/Outlook365/" + a
+            attached_file = base_path + "/" + a
             filename = os.path.basename(attached_file)
             attachment = open(attached_file, "rb")
             part = MIMEBase('application', 'octet-stream')
@@ -439,7 +460,7 @@ if module == "forward":
             encoders.encode_base64(part)
             part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
             mail__.attach(part)
-
+        fromaddr = outlook_365.user
         server.sendmail(fromaddr, mail__['to'], mail__.as_bytes())
         # server.close()
         mail.logout()
@@ -447,12 +468,14 @@ if module == "forward":
         PrintException()
         raise e
 
+
 if module == "list_folders":
     try:
         result = GetParams('var')
         host = "outlook.office365.com"
-        mail = imaplib.IMAP4_SSL(host)
-        mail.login(fromaddr, password)
+        # mail = imaplib.IMAP4_SSL(host)
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
         folders = [folder.decode().split('"/"')[1] for folder in mail.list()[1]]
 
         SetVar(result, folders)
@@ -460,23 +483,20 @@ if module == "list_folders":
     except:
         PrintException()
 
-if module == "markAsUnread":
+if module == 'markasunread':
     id_ = GetParams("id_")
     folder = GetParams("folder")
     var = GetParams("var")
 
     if not folder:
         folder = "inbox"
-
-    mail = imaplib.IMAP4_SSL('outlook.office365.com')
-    mail.login(fromaddr, password)
+    mail = outlook_365.connect_imap()
     mail.select(folder, readonly=False)
-    resp, data = mail.fetch(id_, "(UID)")
-    msg_uid = parse_uid(data[0])
+    resp, data =mail.fetch(id_, "(UID)")
+    msg_uid = parser_uid(data[0])
 
-    data = mail.uid('STORE', msg_uid, '-FLAGS', '(\Seen)')
+    data = mail.uid('STORE', msg_uid,'-FLAGS', r'(\Seen)')
 
-    print(data)
 
 if module == "close":
-    server.close()
+    outlook_365 = None
