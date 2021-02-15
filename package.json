@@ -631,7 +631,17 @@
                             "en": "Email ID"
                         },
                         "id": "id_",
-                        "css": "col-md-12"
+                        "css": "col-md-6"
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": "inbox",
+                        "title": {
+                            "es": "Carpeta del mail a responder",
+                            "en": "Email Folder to reply"
+                        },
+                        "id": "folder",
+                        "css": "col-md-6"
                     },
                     {
                         "type": "input",

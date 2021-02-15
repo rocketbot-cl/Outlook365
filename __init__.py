@@ -295,11 +295,14 @@ if module == "reply_email":
         id_ = GetParams('id_')
         body_ = GetParams('body')
         attached_file = GetParams('attached_file')
+        folder = GetParams("folder")
+        if not folder:
+            folder = "inbox"
 
         # mail = imaplib.IMAP4_SSL('outlook.office365.com')
         # mail.login(fromaddr, password)
         mail = outlook_365.connect_imap()
-        mail.select("inbox")
+        mail.select(folder)
         server = outlook_365.connect_smtp()
         # server = smtplib.SMTP('smtp.office365.com', 587)
         # server.starttls()
@@ -335,6 +338,7 @@ if module == "reply_email":
                 mail__.attach(part)
 
         to_ = mm['From'].split("<")[1].replace(">", "")
+        print(to_)
         fromaddr = outlook_365.user
         server.sendmail(fromaddr, mail__['to'], mail__.as_bytes())
         # server.close()
