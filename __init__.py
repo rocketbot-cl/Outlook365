@@ -63,12 +63,14 @@ class Outlook365:
         self.pwd = pwd
 
     def connect_smtp(self):
+        global smtplib
         server_ = smtplib.SMTP('smtp.office365.com', 587)
         server_.starttls()
         server_.login(self.user, self.pwd)
         return server_
 
     def connect_imap(self):
+        global imaplib
         try:
             mail = imaplib.IMAP4_SSL('outlook.office365.com', 993)
         except:
@@ -258,7 +260,10 @@ if module == "read_mail":
     typ, data = mail.fetch(id_, '(RFC822)')
     raw_email = data[0][1]
     # converts byte literal to string removing b''
-    raw_email_string = raw_email.decode('utf-8')
+    try:
+        raw_email_string = raw_email.decode('utf-8')
+    except:
+        raw_email_string = raw_email.decode('latin-1')
     email_message = email.message_from_string(raw_email_string)
 
     mail_ = mailparser.parse_from_string(raw_email_string)
