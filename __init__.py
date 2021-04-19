@@ -19,7 +19,7 @@ Para obtener la Opcion seleccionada:
 
 
 Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
-    
+
     pip install <package> -t .
 
 """
@@ -31,6 +31,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 import imaplib
 import email
+import re
 import os
 import sys
 from email.utils import make_msgid
@@ -50,11 +51,11 @@ sys.path.append(cur_path)
 
 from mailparser import mailparser
 
-
 """
     Obtengo el modulo que fue invocado
 """
 module = GetParams("module")
+
 
 class Outlook365:
 
@@ -98,7 +99,7 @@ if module == "conf_mail":
         # server = smtplib.SMTP('smtp.office365.com', 587)
         # server.starttls()
         # server.login(fromaddr, password)
-    
+
         conx = True
     except:
         PrintException()
@@ -143,7 +144,6 @@ if module == "send_mail":
                 f = os.path.join(files, f)
                 filenames.append(f)
 
-
             if filenames:
                 for file in filenames:
                     filename = os.path.basename(file)
@@ -182,7 +182,7 @@ if module == "get_mail":
     filtro = GetParams('filtro')
     var_ = GetParams('var_')
     folder = GetParams("folder")
-    
+
     try:
         if not folder:
             folder = "inbox"
@@ -217,10 +217,9 @@ if module == "get_unread":
     filtro = GetParams('filtro')
     var_ = GetParams('var_')
     folder = GetParams("folder")
-    
+
     if not folder:
         folder = "inbox"
-
 
     mail = outlook_365.connect_imap()
     mail.list()
@@ -364,14 +363,13 @@ if module == "create_folder":
         PrintException()
         raise e
 
-
 if module == "move_mail":
     # imap = GetGlobals('email')
     id_ = GetParams("id_")
     label_ = GetParams("label_")
     from_ = GetParams("from")
     var = GetParams("var")
-    print("id",id_)
+    print("id", id_)
     if not id_:
         raise Exception("No ha ingresado ID de email a mover")
     if not label_:
@@ -382,9 +380,10 @@ if module == "move_mail":
         # mail = imaplib.IMAP4_SSL('outlook.office365.com')
         # mail.login(fromaddr, password)
         mail = outlook_365.connect_imap()
-        
+
         mail.select(from_, readonly=False)
-        
+
+
         def parse_uid(data):
             import re
             try:
@@ -395,6 +394,7 @@ if module == "move_mail":
             except Exception as e:
                 PrintException()
                 raise e
+
 
         resp, data = mail.fetch(id_, "(UID)")
         # msg = email.message_from_bytes((data[0]))
@@ -434,7 +434,7 @@ if module == "forward":
         raw_email = data[0][1]
         mm = email.message_from_bytes(raw_email)
 
-        #make_tmp_dir('Outlook365')
+        # make_tmp_dir('Outlook365')
         raw_email_string = raw_email.decode('utf-8')
         email_message = email.message_from_string(raw_email_string)
         mail_ = mailparser.parse_from_string(raw_email_string)
@@ -480,7 +480,6 @@ if module == "forward":
         PrintException()
         raise e
 
-
 if module == "list_folders":
     try:
         result = GetParams('var')
@@ -504,11 +503,10 @@ if module == 'markasunread':
         folder = "inbox"
     mail = outlook_365.connect_imap()
     mail.select(folder, readonly=False)
-    resp, data =mail.fetch(id_, "(UID)")
+    resp, data = mail.fetch(id_, "(UID)")
     msg_uid = parser_uid(data[0])
 
-    data = mail.uid('STORE', msg_uid,'-FLAGS', r'(\Seen)')
-
+    data = mail.uid('STORE', msg_uid, '-FLAGS', r'(\Seen)')
 
 if module == "close":
     outlook_365 = None
