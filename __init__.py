@@ -250,49 +250,52 @@ if module == "read_mail":
 
     if not folder:
         folder = "inbox"
-
-    # mail = imaplib.IMAP4_SSL('outlook.office365.com')
-    # mail.login(fromaddr, password)
-    mail = outlook_365.connect_imap()
-    mail.select(folder)
-
-    # mail.select()
-    typ, data = mail.fetch(id_, '(RFC822)')
-    raw_email = data[0][1]
-    # converts byte literal to string removing b''
     try:
-        raw_email_string = raw_email.decode('utf-8')
-    except:
-        raw_email_string = raw_email.decode('latin-1')
-    email_message = email.message_from_string(raw_email_string)
+        # mail = imaplib.IMAP4_SSL('outlook.office365.com')
+        # mail.login(fromaddr, password)
+        mail = outlook_365.connect_imap()
+        mail.select(folder)
 
-    mail_ = mailparser.parse_from_string(raw_email_string)
+        # mail.select()
+        typ, data = mail.fetch(id_, '(RFC822)')
+        raw_email = data[0][1]
+        # converts byte literal to string removing b''
+        try:
+            raw_email_string = raw_email.decode('utf-8')
+        except:
+            raw_email_string = raw_email.decode('latin-1')
+        email_message = email.message_from_string(raw_email_string)
 
-    try:
+        mail_ = mailparser.parse_from_string(raw_email_string)
 
-        bs = BeautifulSoup(mail_.body, 'html.parser').body.get_text()
-    except:
-        bs = mail_.body
+        try:
 
-    bs = bs.split('--- mail_boundary ---')[0]
-    print(bs)
-    nameFile = []
+            bs = BeautifulSoup(mail_.body, 'html.parser').body.get_text()
+        except:
+            bs = mail_.body
 
-    for att in mail_.attachments:
-        name_ = att['filename']
-        nameFile.append(name_)
+        bs = bs.split('--- mail_boundary ---')[0]
+        print(bs)
+        nameFile = []
 
-        fileb = att['payload']
-        cont = base64.b64decode(fileb)
-        if att_folder:
-            with open(os.path.join(att_folder, name_), 'wb') as file_:
-                file_.write(cont)
-                file_.close()
+        for att in mail_.attachments:
+            name_ = att['filename']
+            nameFile.append(name_)
 
-    final = {"date": mail_.date.__str__(), 'subject': mail_.subject, 'from': ", ".join([b for (a, b) in mail_.from_]),
-             'to': ", ".join([b for (a, b) in mail_.to]), 'body': bs, 'files': nameFile}
+            fileb = att['payload']
+            cont = base64.b64decode(fileb)
+            if att_folder:
+                with open(os.path.join(att_folder, name_), 'wb') as file_:
+                    file_.write(cont)
+                    file_.close()
 
-    SetVar(var_, final)
+        final = {"date": mail_.date.__str__(), 'subject': mail_.subject, 'from': ", ".join([b for (a, b) in mail_.from_]),
+                'to': ", ".join([b for (a, b) in mail_.to]), 'body': bs, 'files': nameFile}
+
+        SetVar(var_, final)
+    except Exception as e:
+        PrintException()
+        raise e
 
 if module == "reply_email":
 
