@@ -63,9 +63,10 @@ class Outlook365:
         self.user = user
         self.pwd = pwd
 
-    def connect_smtp(self):
+    def connect_smtp(self, timeout):
         global smtplib
-        server_ = smtplib.SMTP('smtp.office365.com', 587)
+        print("connecting smtp")
+        server_ = smtplib.SMTP('smtp.office365.com', 587, timeout=timeout)
         server_.starttls()
         server_.login(self.user, self.pwd)
         return server_
@@ -90,11 +91,17 @@ if module == "conf_mail":
     try:
         fromaddr = GetParams('from')
         password = GetParams('password')
+        timeout = GetParams('timeout')
 
         var_ = GetParams('var_')
 
+        if timeout is None:
+            timeout = 99
+        if isinstance(timeout, str) and not timeout.isdigit():
+            raise Exception("Timeout must be a number")
+        timeout = int(timeout)
         outlook_365 = Outlook365(fromaddr, password)
-        server = outlook_365.connect_smtp()
+        server = outlook_365.connect_smtp(timeout)
 
         # server = smtplib.SMTP('smtp.office365.com', 587)
         # server.starttls()
