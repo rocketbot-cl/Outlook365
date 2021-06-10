@@ -45,8 +45,8 @@ from email.mime.message import MIMEMessage
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'Outlook365' + os.sep + 'libs' + os.sep
-# print(cur_path)
-sys.path.append(cur_path)
+if cur_path not in sys.path:
+    sys.path.append(cur_path)
 # print(cur_path )
 
 from mailparser import mailparser
@@ -59,14 +59,15 @@ module = GetParams("module")
 
 class Outlook365:
 
-    def __init__(self, user, pwd):
+    def __init__(self, user, pwd, timeout):
         self.user = user
         self.pwd = pwd
+        self.timeout = timeout
 
-    def connect_smtp(self, timeout):
+    def connect_smtp(self):
         global smtplib
         print("connecting smtp")
-        server_ = smtplib.SMTP('smtp.office365.com', 587, timeout=timeout)
+        server_ = smtplib.SMTP('smtp.office365.com', 587, timeout=self.timeout)
         server_.starttls()
         server_.login(self.user, self.pwd)
         return server_
@@ -100,8 +101,8 @@ if module == "conf_mail":
         if isinstance(timeout, str) and not timeout.isdigit():
             raise Exception("Timeout must be a number")
         timeout = int(timeout)
-        outlook_365 = Outlook365(fromaddr, password)
-        server = outlook_365.connect_smtp(timeout)
+        outlook_365 = Outlook365(fromaddr, password, timeout)
+        server = outlook_365.connect_smtp()
 
         # server = smtplib.SMTP('smtp.office365.com', 587)
         # server.starttls()
@@ -143,7 +144,7 @@ if module == "send_mail":
 
         if not body_:
             body_ = ""
-        body = body_
+        body = body_.replace("\n", "<br/>")
         msg.attach(MIMEText(body, 'html'))
 
         if files:
@@ -205,8 +206,10 @@ if module == "get_mail":
         # Out: list of "folders" aka labels in gmail.
         mail.select(folder)  # connect to inbox.
 
+        from datetime import datetime
+
         if filtro and len(filtro) > 0:
-            result, data = mail.search(None, filtro, "ALL")
+            result, data = mail.search(None, filtro)
         else:
             result, data = mail.search(None, "ALL")
 
