@@ -65,7 +65,7 @@ class Mail:
     def add_body(self, msg, body):
         body = body.replace("\n", "<br/>")
         if not "src" in body:
-            msg.add_alternative(MIMEText(body, 'html'))
+            msg.attach(MIMEText(body, 'html'))
             return msg
 
         for match in get_regex_group(r"src=\"(.*)\"", body):
@@ -105,10 +105,12 @@ class Mail:
             with open(path, "rb") as attachment:
                 part = MIMEBase('application', 'octet-stream')
                 part.set_payload(attachment.read())
+                attachment.close()
 
             encoders.encode_base64(part)
             part.add_header('Content-Disposition',
                             f"attachment; filename= {filename}")
+            
             msg.attach(part)
 
         return msg
@@ -123,6 +125,7 @@ class Mail:
         }
         mail = type_email[type_]
         mail['Message-ID'] = make_msgid()
+        print(reference)
         if reference is not None:
             mail['References'] = mail['In-Reply-To'] = reference.strip()
         
@@ -139,11 +142,13 @@ class Mail:
 
         msg = self.add_body(msg, body)
         msg = self.add_attachments(msg, attachments_path)
+       
         text = msg.as_string()
+        
         server = self.connect_smtp()
-        print("sending mail")
+        
         server.sendmail(self.user, to.split(",") + cc.split(","), text.encode('utf-8'))
-        print("email sent")
+        
         server.close()
 
     def get_mail(self, filter_, folder):
