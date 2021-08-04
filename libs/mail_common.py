@@ -125,7 +125,7 @@ class Mail:
         }
         mail = type_email[type_]
         mail['Message-ID'] = make_msgid()
-        print(reference)
+        
         if reference is not None:
             mail['References'] = mail['In-Reply-To'] = reference.strip()
         
@@ -216,7 +216,7 @@ class Mail:
 
         raw_email = data[0][1]
         origin_mail = email.message_from_bytes(raw_email)
-        print("origin")
+        
         
         self.send_mail(
             to=origin_mail['Reply-To'] or origin_mail['From'],
@@ -268,30 +268,3 @@ class Mail:
 
         self.imap.logout()
 
-
-if __name__ == '__main__':
-
-    from unittest import TestCase
-    import getpass
-
-    class TestSMTP(TestCase):
-
-        def test_smtp_connection(self):
-            # connect to actual host on actual port
-            outlook_365 = Mail(input("email"), getpass.getpass(), timeout=99, smtp_host='smtp.office365.com', smtp_port=587,
-                               imap_host='outlook.office365.com', imap_port=993)
-
-            smtp = outlook_365.connect_smtp()
-
-            # check we have an open socket
-            self.assertIsNotNone(smtp.sock)
-
-            # run a no-operation, which is basically a server-side pass-through
-            self.assertEqual(smtp.noop(), (250, b'2.0.0 OK'))
-
-            # assert disconnected
-            self.assertEqual(
-                smtp.quit(), (221, b'2.0.0 Service closing transmission channel'))
-            self.assertIsNone(smtp.sock)
-
-    TestSMTP().test_smtp_connection()

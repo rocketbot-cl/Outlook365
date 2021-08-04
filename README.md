@@ -28,6 +28,11 @@ Module to read, send, create folder and move email, for Outlook (Office 365)
 [![Outlook365](https://img.youtube.com/vi/JYbdunZZVrA/0.jpg)](https://www.youtube.com/watch?v=JYbdunZZVrA "Outlook365")
 
 
+## Updates
+### 4-Aug-2021
+- Send local image in img tag
+- Text area in input to write body
+
 <h2>Dependencies</h2>
 
 <ul>
