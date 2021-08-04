@@ -65,7 +65,7 @@ class Mail:
     def add_body(self, msg, body):
         body = body.replace("\n", "<br/>")
         if not "src" in body:
-            msg.add_alternative(MIMEText(body, 'html'))
+            msg.attach(MIMEText(body, 'html'))
             return msg
 
         for match in get_regex_group(r"src=\"(.*)\"", body):
@@ -105,10 +105,12 @@ class Mail:
             with open(path, "rb") as attachment:
                 part = MIMEBase('application', 'octet-stream')
                 part.set_payload(attachment.read())
+                attachment.close()
 
             encoders.encode_base64(part)
             part.add_header('Content-Disposition',
                             f"attachment; filename= {filename}")
+            
             msg.attach(part)
 
         return msg
@@ -123,6 +125,7 @@ class Mail:
         }
         mail = type_email[type_]
         mail['Message-ID'] = make_msgid()
+        
         if reference is not None:
             mail['References'] = mail['In-Reply-To'] = reference.strip()
         
@@ -139,11 +142,13 @@ class Mail:
 
         msg = self.add_body(msg, body)
         msg = self.add_attachments(msg, attachments_path)
+       
         text = msg.as_string()
+        
         server = self.connect_smtp()
-        print("sending mail")
+        
         server.sendmail(self.user, to.split(",") + cc.split(","), text.encode('utf-8'))
-        print("email sent")
+        
         server.close()
 
     def get_mail(self, filter_, folder):
@@ -211,7 +216,7 @@ class Mail:
 
         raw_email = data[0][1]
         origin_mail = email.message_from_bytes(raw_email)
-        print("origin")
+        
         
         self.send_mail(
             to=origin_mail['Reply-To'] or origin_mail['From'],
@@ -263,30 +268,3 @@ class Mail:
 
         self.imap.logout()
 
-
-if __name__ == '__main__':
-
-    from unittest import TestCase
-    import getpass
-
-    class TestSMTP(TestCase):
-
-        def test_smtp_connection(self):
-            # connect to actual host on actual port
-            outlook_365 = Mail(input("email"), getpass.getpass(), timeout=99, smtp_host='smtp.office365.com', smtp_port=587,
-                               imap_host='outlook.office365.com', imap_port=993)
-
-            smtp = outlook_365.connect_smtp()
-
-            # check we have an open socket
-            self.assertIsNotNone(smtp.sock)
-
-            # run a no-operation, which is basically a server-side pass-through
-            self.assertEqual(smtp.noop(), (250, b'2.0.0 OK'))
-
-            # assert disconnected
-            self.assertEqual(
-                smtp.quit(), (221, b'2.0.0 Service closing transmission channel'))
-            self.assertIsNone(smtp.sock)
-
-    TestSMTP().test_smtp_connection()

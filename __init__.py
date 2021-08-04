@@ -100,6 +100,7 @@ try:
             subject,
             cc=cc,
             attachments_path=[attached_file, files],
+            type_="multipart",
             body=body_
         )
 
