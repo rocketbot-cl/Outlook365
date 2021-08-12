@@ -49,7 +49,7 @@ class Mail:
         self.server = smtplib.SMTP(
             self.smtp_host, self.smtp_port, timeout=self.timeout)
         self.server.starttls()
-        self.server.login(self.user, self.pwd)
+        print(self.server.login(self.user, self.pwd))
         return self.server
 
     def connect_imap(self):
@@ -59,7 +59,7 @@ class Mail:
         except:
             self.imap = imaplib.IMAP4(self.imap_host, self.imap_port)
 
-        self.imap.login(self.user, self.pwd)
+        print(self.imap.login(self.user, self.pwd))
         return self.imap
 
     def add_body(self, msg, body):
@@ -108,7 +108,7 @@ class Mail:
 
             encoders.encode_base64(part)
             part.add_header('Content-Disposition',
-                            f"attachment; filename= {filename}")
+                            "attachment",filename=filename)
             msg.attach(part)
 
         return msg

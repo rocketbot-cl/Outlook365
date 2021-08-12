@@ -74,6 +74,7 @@ try:
         try:
             outlook_365 = Outlook365(fromaddr, password, timeout)
             server = outlook_365.connect_smtp()
+            outlook_365.connect_imap()
             conx = True
         except:
             PrintException()
@@ -89,6 +90,8 @@ try:
         attached_file = GetParams('attached_file')
         files = GetParams('attached_folder')
 
+        if cc is None:
+            cc = ""
         if attached_file is None:
             attached_file = ""
         
@@ -114,7 +117,17 @@ try:
         if not filtro:
             filtro = "All"
 
-        lista = outlook_365.get_mail(filtro, folder)
+        # lista = outlook_365.get_mail(filtro, folder)
+        mail = outlook_365.imap
+        filter_ = filtro
+        mail.list()
+        mail.select(folder)
+
+        result, data = mail.search(None, filter_)
+        ids = data[0]  # data is a list.
+        id_list = ids.split()  # ids is a space separated string
+        mail.logout()
+        lista = [b.decode() for b in id_list]
         if var_:
             SetVar(var_, lista)
 
