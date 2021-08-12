@@ -86,6 +86,7 @@
                             "es": "Nombre de variable sin {}",
                             "en": "Variable name without {}"
                         },
+                        "remove_vars": true,
                         "id": "var_",
                         "css": "col-md-6"
                     }
@@ -600,6 +601,7 @@
                             "en": "Var name without {}",
                             "cn": "Var name without {}"
                         },
+                        "remove_vars": true,
                         "id": "var",
                         "css": "col-md-12"
                     }
@@ -776,6 +778,7 @@
                             "en": "Var name without {}",
                             "cn": "Var name without {}"
                         },
+                        "remove_vars": true,
                         "id": "var",
                         "css": "col-md-12"
                     }
