@@ -159,6 +159,21 @@
                     },
                     {
                         "type": "input",
+                        "placeholder": "bcc@mail.com, bcc2@mail.com",
+                        "title": {
+                            "es": "Copia oculta:",
+                            "en": "Bcc:",
+                            "cn": "Bcc:"
+                        },
+                        "help": {
+                            "es": "para varios destinatarios separar por coma",
+                            "en": "for multiple recipients, comma separated"
+                        },
+                        "id": "bcc",
+                        "css": "col-md-12"
+                    },
+                    {
+                        "type": "input",
                         "placeholder": "Nuevo mail",
                         "title": {
                             "es": "Asunto:",

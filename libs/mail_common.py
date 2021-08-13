@@ -117,7 +117,7 @@ class Mail:
     def add_attachments_from_mail(self, mail):
         pass
 
-    def create_mail(self, from_, to, subject, cc="", type_="multipart", reference=None):
+    def create_mail(self, from_, to, subject, cc="", bcc="", type_="multipart", reference=None):
         type_email = {
             "multipart": MIMEMultipart('alternative'),
             "message": EmailMessage()
@@ -134,7 +134,7 @@ class Mail:
         mail['Cc'] = cc
         return mail
 
-    def send_mail(self, to, subject, attachments_path=[], body="", cc="", type_="message", reference=None):
+    def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="",type_="message", reference=None):
 
         msg = self.create_mail(self.user, to, subject,
                                cc=cc, type_=type_, reference=reference)
@@ -145,8 +145,11 @@ class Mail:
         text = msg.as_string()
         
         server = self.connect_smtp()
-        
-        server.sendmail(self.user, to.split(",") + cc.split(","), text.encode('utf-8'))
+
+        sendTo  = to.split(",") + cc.split(",") + bcc.split(",")
+        print(sendTo)
+
+        server.sendmail(self.user, sendTo, text.encode('utf-8'))
         
         server.close()
 

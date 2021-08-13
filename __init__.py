@@ -87,11 +87,14 @@ try:
         subject = GetParams('subject')
         body_ = GetParams('body')
         cc = GetParams('cc')
+        bcc = GetParams('bcc')
         attached_file = GetParams('attached_file')
         files = GetParams('attached_folder')
 
         if cc is None:
             cc = ""
+        if bcc is None:
+            bcc = ""
         if attached_file is None:
             attached_file = ""
         
@@ -102,6 +105,7 @@ try:
             to,
             subject,
             cc=cc,
+            bcc=bcc,
             attachments_path=[attached_file, files],
             type_="multipart",
             body=body_
