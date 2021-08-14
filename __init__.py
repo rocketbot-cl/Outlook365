@@ -56,7 +56,8 @@ try:
             def __init__(self, user, pwd, timeout):
                 super().__init__(user, pwd, timeout,
                                         smtp_host='smtp.office365.com', smtp_port=587,
-                                        imap_host='outlook.office365.com', imap_port=993)
+                                        imap_host='outlook.office365.com', imap_port=993,
+                                        pop_host="outlook.office365.com", pop_port=995)
 
 
         fromaddr = GetParams('from')

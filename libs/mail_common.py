@@ -1,6 +1,7 @@
 
 __author__ = "Rocketbot"
 
+import poplib
 import imaplib
 import mimetypes
 import os
@@ -11,6 +12,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import make_msgid
+from email.parser import Parser
 from email import encoders
 import email
 from textwrap import dedent
@@ -35,7 +37,7 @@ def get_regex_group(regex, string):
 
 class Mail:
 
-    def __init__(self, user, pwd, timeout, smtp_host, smtp_port, imap_host, imap_port):
+    def __init__(self, user, pwd, timeout, smtp_host, smtp_port, imap_host, imap_port, pop_host=None, pop_port=None):
         self.user = user
         self.pwd = pwd
         self.timeout = timeout
@@ -43,6 +45,9 @@ class Mail:
         self.smtp_port = smtp_port
         self.imap_host = imap_host
         self.imap_port = imap_port
+        self.pop_host = pop_host
+        self.pop_port = pop_port
+        self.pop = None
 
     def connect_smtp(self):
         print("Connecting smtp")
@@ -61,6 +66,17 @@ class Mail:
 
         print(self.imap.login(self.user, self.pwd))
         return self.imap
+
+    def connect_pop(self):
+        print("Connecting Imap")
+        try:
+            self.pop = poplib.POP3_SSL(self.imap_host, self.imap_port)
+        except:
+            self.pop = imaplib.POP3(self.imap_host, self.imap_port)
+
+        print(self.pop.user(self.user))
+        print(self.pop.pass_(self.pwd))
+        return self.pop
 
     def add_body(self, msg, body):
         body = body.replace("\n", "<br/>")
@@ -153,7 +169,24 @@ class Mail:
         
         server.close()
 
+    def get_mail_pop(self, filter_, value):
+        count, size = self.pop.stat()
+        mails_id = []
+        for i in range(count):
+            if not filter_:
+                mails_id.append(i)
+                continue
+            res, line, octet = self.pop.retr(i)
+            msg_conn = b'\r\n'.join(line).decode('utf-8')
+            msg = Parser().parserstr(msg_conn)
+            if msg.get(filter_) == value:
+                mails_id.append(i)
+
+        return mails_id
+
     def get_mail(self, filter_, folder):
+        if self.pop is not None:
+            return get_mail_pop(filter_, folder)
         mail = self.connect_imap()
         mail.list()
         mail.select(folder)
@@ -256,7 +289,7 @@ class Mail:
             'Forward: ' + mail_obj["subject"],
             attachments_path=att_file,
             body=mail_obj["body"],
-            type="multipart")
+            type_="multipart")
 
     def mark_as_unread(self, id_, folder):
         type, data = self.get_email_from_id(id_, folder, uid="(UID)")
