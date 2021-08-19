@@ -29,6 +29,10 @@ Module to read, send, create folder and move email, for Outlook (Office 365)
 
 
 ## Updates
+### 13-Aug-2021
+- Fix forward email
+- Fix send email without cc
+- Send email with bcc
 ### 4-Aug-2021
 - Send local image in img tag
 - Text area in input to write body
