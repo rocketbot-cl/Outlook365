@@ -1,7 +1,6 @@
 
 __author__ = "Rocketbot"
 
-import poplib
 import imaplib
 import mimetypes
 import os
@@ -67,16 +66,6 @@ class Mail:
         print(self.imap.login(self.user, self.pwd))
         return self.imap
 
-    def connect_pop(self):
-        print("Connecting Imap")
-        try:
-            self.pop = poplib.POP3_SSL(self.imap_host, self.imap_port)
-        except:
-            self.pop = imaplib.POP3(self.imap_host, self.imap_port)
-
-        print(self.pop.user(self.user))
-        print(self.pop.pass_(self.pwd))
-        return self.pop
 
     def add_body(self, msg, body):
         body = body.replace("\n", "<br/>")
