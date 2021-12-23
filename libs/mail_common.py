@@ -234,6 +234,21 @@ class Mail:
             'body': bs, 'files': filenames
         }
 
+    def get_attachments(self,  id_, folder, att_folder):
+        type, data = self.get_email_from_id(id_, folder)
+        self.imap.logout()
+        raw_email = data[0][1]
+        try:
+            raw_email_string = raw_email.decode('utf-8')
+        except:
+            raw_email_string = raw_email.decode('latin-1')
+        mail_ = mailparser.parse_from_string(raw_email_string)
+        filenames = []
+        for att in mail_.attachments:
+            name = att['filename']
+            filenames.append(name)
+            self.save_file(att_folder, name, att['payload'])
+
     def reply_mail(self, id_, folder, body, att_file):
         type, data = self.get_email_from_id(id_, folder)
         self.imap.logout()

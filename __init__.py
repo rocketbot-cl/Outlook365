@@ -233,6 +233,18 @@ try:
             folder = "inbox"
 
         outlook_365.mark_as_unread(id_, folder)
+    
+    
+    if module == "get_attachments":
+        id_ = GetParams('id_')
+        var_ = GetParams('var_')
+        att_folder = GetParams('att_folder')
+        folder = GetParams("folder")
+
+        if not folder:
+            folder = "inbox"
+
+        final = outlook_365.get_attachments(id_, folder, att_folder)
 
     if module == "close":
         outlook_365 = None

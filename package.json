@@ -1,899 +1,966 @@
 {
-    "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>",
-    "description": "Módulo para realizar acciones en Outlook Office 365",
-    "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-    "version": "8.7",
-    "license": "MIT",
-    "homepage": "http://rocketbot.co/",
-    "linux": true,
-    "windows": true,
-    "mac": true,
-    "docker": true,
-    "name": "Outlook365",
-    "dependencies": {
-        "mail-parser": "3.9.3"
+  "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>",
+  "description": "Módulo para realizar acciones en Outlook Office 365",
+  "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
+  "version": "8.7",
+  "license": "MIT",
+  "homepage": "http://rocketbot.co/",
+  "linux": true,
+  "windows": true,
+  "mac": true,
+  "docker": true,
+  "name": "Outlook365",
+  "dependencies": {
+    "mail-parser": "3.9.3"
+  },
+  "title": {
+    "en": "Outlook365",
+    "es": "Outlook365",
+    "cn": "Outlook365"
+  },
+  "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+  "children": [
+    {
+      "en": {
+        "title": "Server Configuration",
+        "description": "Server Configuration",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Configurar Servidor",
+        "description": "Configurar Servidor",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "Server Configuration",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "user@example.com",
+            "title": {
+              "es": "User:",
+              "en": "Usuario:",
+              "cn": "User:"
+            },
+            "id": "from",
+            "css": "col-md-8"
+          },
+          {
+            "type": "input",
+            "placeholder": "99",
+            "title": {
+              "es": "Timeout:",
+              "en": "Timeout:",
+              "cn": "Timeout:"
+            },
+            "id": "timeout",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "******",
+            "title": {
+              "es": "Contraseña:",
+              "en": "Password:",
+              "cn": "Password:"
+            },
+            "id": "password",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar resultado a variable:",
+              "en": "Assign result to a Variable:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}"
+            },
+            "remove_vars": true,
+            "id": "var_",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "conf_mail",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
     },
-    "title": {
-        "en": "Outlook365",
-        "es": "Outlook365",
-        "cn": "Outlook365"
+    {
+      "en": {
+        "title": "Send Email",
+        "description": "Send email, before you must configurate the server",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Enviar Email",
+        "description": "Envia un email, previamente debe configurar el servidor",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "Send Email",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "to@mail.com, to2@mail.com",
+            "title": {
+              "es": "Para:",
+              "en": "To:",
+              "cn": "To:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "to",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "cc@mail.com, cc2@mail.com",
+            "title": {
+              "es": "Copia:",
+              "en": "Cc:",
+              "cn": "Cc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "cc",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "bcc@mail.com, bcc2@mail.com",
+            "title": {
+              "es": "Copia oculta:",
+              "en": "Bcc:",
+              "cn": "Bcc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "bcc",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "Nuevo mail",
+            "title": {
+              "es": "Asunto:",
+              "en": "Subject:",
+              "cn": "Subject:"
+            },
+            "id": "subject",
+            "css": "col-md-12"
+          },
+          {
+            "type": "textarea",
+            "placeholder": "Esto es una prueba",
+            "title": {
+              "es": "Mensaje:",
+              "en": "Body:",
+              "cn": "Body:"
+            },
+            "id": "body",
+            "css": "col-md-12"
+          },
+          {
+            "type": "file_select",
+            "placeholder": {
+              "es": "C:\\User\\Desktop\\test.txt",
+              "en": "C:\\User\\Desktop\\test.txt",
+              "cn": "C:\\User\\Desktop\\test.txt"
+            },
+            "title": {
+              "es": "Archivo Adjunto:",
+              "en": "Attached File:",
+              "cn": "Attached File:"
+            },
+            "help": {
+              "es": "Opción para solo un adjunto, si además se ingresa carpeta sólo se considerará esta última",
+              "en": "Option for only one attachment, if you also enter a folder only the latter will be considered"
+            },
+            "id": "attached_file",
+            "css": "col-md-12"
+          },
+          {
+            "type": "folder_select",
+            "placeholder": {
+              "es": "C:\\User\\Desktop\\Files",
+              "en": "C:\\User\\Desktop\\Files",
+              "cn": "C:\\User\\Desktop\\Files"
+            },
+            "title": {
+              "es": "Carpeta (Varios archivos):",
+              "en": "Folder (Multiple files):"
+            },
+            "help": {
+              "es": "Para varios adjuntos, ingresar ruta a carpeta",
+              "en": "For several attachments, enter folder path"
+            },
+            "id": "attached_folder",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "send_mail",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
     },
-    "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-    "children": [
-        {
-            "en": {
-                "title": "Server Configuration",
-                "description": "Server Configuration",
-                "title_options": "Select Option",
-                "options": null
+    {
+      "en": {
+        "title": "List all email",
+        "description": "List all email, you can specify a filter",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Lista todos los email",
+        "description": "Lista todos los email, se puede especificar un filtro",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "List all email",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "SUBJECT \"COMPRA*\"",
+            "title": {
+              "es": "Filtro:",
+              "en": "Filter:",
+              "cn": "Filter:"
             },
-            "es": {
-                "title": "Configurar Servidor",
-                "description": "Configurar Servidor",
-                "title_options": "Seleccione una opción",
-                "options": null
+            "help": {
+              "es": "Dejar vacío para traerlos todos",
+              "en": "Empty for get all",
+              "cn": "Empty for get all"
             },
-            "cn": {
-                "title": "Server Configuration",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
+            "id": "filtro",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "345",
+            "title": {
+              "es": "Carpeta",
+              "en": "Folder"
             },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "user@example.com",
-                        "title": {
-                            "es": "User:",
-                            "en": "Usuario:",
-                            "cn": "User:"
-                        },
-                        "id": "from",
-                        "css": "col-md-8"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "99",
-                        "title": {
-                            "es": "Timeout:",
-                            "en": "Timeout:",
-                            "cn": "Timeout:"
-                        },
-                        "id": "timeout",
-                        "css": "col-md-4"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "******",
-                        "title": {
-                            "es": "Contraseña:",
-                            "en": "Password:",
-                            "cn": "Password:"
-                        },
-                        "id": "password",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar resultado a variable:",
-                            "en": "Assign result to a Variable:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Variable name without {}"
-                        },
-                        "remove_vars": true,
-                        "id": "var_",
-                        "css": "col-md-6"
-                    }
-                ]
+            "help": {
+              "es": "Por defecto, Inbox",
+              "en": "By default, Inbox"
             },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "conf_mail",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
+            "id": "folder",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar a variable:",
+              "en": "Asign to var:",
+              "cn": "Asign to var:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Var name whitout {}",
+              "cn": "Var name whitout {}"
+            },
+            "id": "var_",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "get_mail",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "List unread emails",
+        "description": "List all unread email, you can specify a filter",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Lista emails no leídos",
+        "description": "Lista emails no leídos",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "List unread email",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "SUBJECT \"COMPRA*\"",
+            "title": {
+              "es": "Filtro:",
+              "en": "Filter:",
+              "cn": "Filter:"
+            },
+            "help": {
+              "es": "Dejar vacío para traerlos todos",
+              "en": "Empty for get all",
+              "cn": "Empty for get all"
+            },
+            "id": "filtro",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "inbox",
+            "title": {
+              "es": "Carpeta",
+              "en": "Folder"
+            },
+            "help": {
+              "es": "Por defecto, Inbox",
+              "en": "By default, Inbox"
+            },
+            "id": "folder",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar a variable:",
+              "en": "Asign to var:",
+              "cn": "Asign to var:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Var name whitout {}",
+              "cn": "Var name whitout {}"
+            },
+            "id": "var_",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "get_unread",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Read email for ID",
+        "description": "Read email for ID",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Leer email por ID",
+        "description": "Leer email por ID",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "Read email for ID",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "345",
+            "title": {
+              "es": "ID del email:",
+              "en": "Email ID:",
+              "cn": "Email ID:"
+            },
+            "id": "id_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "inbox",
+            "title": {
+              "es": "Carpeta",
+              "en": "Folder"
+            },
+            "help": {
+              "es": "Por defecto, Inbox",
+              "en": "By default, Inbox"
+            },
+            "id": "folder",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar a variable:",
+              "en": "Asign to var:",
+              "cn": "Asign to var:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Var name whitout {}",
+              "cn": "Var name whitout {}"
+            },
+            "id": "var_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "folder_select",
+            "placeholder": "C:\\User\\Desktop",
+            "title": {
+              "es": "Ruta para descargar adjuntos:",
+              "en": "Path for download attachment:",
+              "cn": "Path for download attachment:"
+            },
+            "id": "att_folder",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "read_mail",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Create Folder",
+        "description": "Create Folder",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Crear Carpeta",
+        "description": "Crea una carpeta",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "Create Label",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "Ingrese nombre de la carpeta",
+            "title": {
+              "es": "Nombre Carpeta:",
+              "en": "Folder Name:",
+              "cn": "Folder Name:"
+            },
+            "id": "folder_name",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "create_folder",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Move email to folder",
+        "description": "Move email to folder",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Mover email a carpeta",
+        "description": "Mueve email a carpeta",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "cn": {
+        "title": "Move email to label",
+        "description": "输入要用逗号分隔的要清理的变量",
+        "title_options": "选择选项",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "Ingrese ID del email",
+            "title": {
+              "es": "ID del email:",
+              "en": "Email ID:",
+              "cn": "Email ID:"
+            },
+            "id": "id_",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "test",
+            "title": {
+              "es": "Carpeta de destino:",
+              "en": "Folder name to send:"
+            },
+            "id": "label_",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "test",
+            "title": {
+              "es": "Nombre de la carpeta de origen:",
+              "en": "From:",
+              "cn": "From:"
+            },
+            "id": "from",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar resultado a variable:",
+              "en": "Asign result to var:",
+              "cn": "Asign result to var:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Var name without {}",
+              "cn": "Var name without {}"
+            },
+            "remove_vars": true,
+            "id": "var",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "move_mail",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Reply email for ID",
+        "description": "Reply email for ID",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Responder email por ID",
+        "description": "Responder email por ID",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "355",
+            "title": {
+              "es": "ID Email",
+              "en": "Email ID"
+            },
+            "id": "id_",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "inbox",
+            "title": {
+              "es": "Carpeta del mail a responder",
+              "en": "Email Folder to reply"
+            },
+            "id": "folder",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Esto es una prueba",
+            "title": {
+              "es": "Mensaje:",
+              "en": "Body:",
+              "cn": "Body:"
+            },
+            "id": "body",
+            "css": "col-md-12"
+          },
+          {
+            "type": "file_select",
+            "placeholder": {
+              "es": "C:\\User\\Desktop\\test.txt",
+              "en": "C:\\User\\Desktop\\test.txt",
+              "cn": "C:\\User\\Desktop\\test.txt"
+            },
+            "title": {
+              "es": "Archivo Adjunto:",
+              "en": "Attached File:",
+              "cn": "Attached File:"
+            },
+            "id": "attached_file",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "reply_email",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Forward email for ID",
+        "description": "Forward email for ID",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Reenviar email por ID",
+        "description": "Reenviar email por ID",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "355",
+            "title": {
+              "es": "ID Email",
+              "en": "Email ID"
+            },
+            "id": "id_",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "test@email.com",
+            "title": {
+              "es": "Email:",
+              "en": "Email:",
+              "cn": "Email:"
+            },
+            "id": "email",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "forward",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "List Folders",
+        "description": "List all Folders",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Listar Carpetas",
+        "description": "Devuelve todas las carpetas",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "Variable",
+            "title": {
+              "es": "Asignar resultado a variable:",
+              "en": "Asign result to var:",
+              "cn": "Asign result to var:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Var name without {}",
+              "cn": "Var name without {}"
+            },
+            "remove_vars": true,
+            "id": "var",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "list_folders",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Mark email as unread",
+        "description": "Mark email as unread",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Marcar email como no leído",
+        "description": "Marcar email como no leído",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "inbox",
+            "title": {
+              "es": "Nombre Carpeta:",
+              "en": "Folder Name:",
+              "cn": "Folder Name:"
+            },
+            "id": "folder",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "Ingrese ID del email",
+            "title": {
+              "es": "ID del email:",
+              "en": "Email ID:",
+              "cn": "Email ID:"
+            },
+            "id": "id_",
+            "css": "col-md-12"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "markAsUnread",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+        "en": {
+          "title": "Download attachments by ID",
+          "description": "Download attachments by ID and save them in the specified folder",
+          "title_options": "Select Option",
+          "options": null
         },
-        {
-            "en": {
-                "title": "Send Email",
-                "description": "Send email, before you must configurate the server",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Enviar Email",
-                "description": "Envia un email, previamente debe configurar el servidor",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "Send Email",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "to@mail.com, to2@mail.com",
-                        "title": {
-                            "es": "Para:",
-                            "en": "To:",
-                            "cn": "To:"
-                        },
-                        "help": {
-                            "es": "para varios destinatarios separar por coma",
-                            "en": "for multiple recipients, comma separated"
-                        },
-                        "id": "to",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "cc@mail.com, cc2@mail.com",
-                        "title": {
-                            "es": "Copia:",
-                            "en": "Cc:",
-                            "cn": "Cc:"
-                        },
-                        "help": {
-                            "es": "para varios destinatarios separar por coma",
-                            "en": "for multiple recipients, comma separated"
-                        },
-                        "id": "cc",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "bcc@mail.com, bcc2@mail.com",
-                        "title": {
-                            "es": "Copia oculta:",
-                            "en": "Bcc:",
-                            "cn": "Bcc:"
-                        },
-                        "help": {
-                            "es": "para varios destinatarios separar por coma",
-                            "en": "for multiple recipients, comma separated"
-                        },
-                        "id": "bcc",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Nuevo mail",
-                        "title": {
-                            "es": "Asunto:",
-                            "en": "Subject:",
-                            "cn": "Subject:"
-                        },
-                        "id": "subject",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "textarea",
-                        "placeholder": "Esto es una prueba",
-                        "title": {
-                            "es": "Mensaje:",
-                            "en": "Body:",
-                            "cn": "Body:"
-                        },
-                        "id": "body",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "file_select",
-                        "placeholder": {
-                            "es": "C:\\User\\Desktop\\test.txt",
-                            "en": "C:\\User\\Desktop\\test.txt",
-                            "cn": "C:\\User\\Desktop\\test.txt"
-                        },
-                        "title": {
-                            "es": "Archivo Adjunto:",
-                            "en": "Attached File:",
-                            "cn": "Attached File:"
-                        },
-                        "help": {
-                            "es": "Opción para solo un adjunto, si además se ingresa carpeta sólo se considerará esta última",
-                            "en": "Option for only one attachment, if you also enter a folder only the latter will be considered"
-                        },
-                        "id": "attached_file",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "folder_select",
-                        "placeholder": {
-                            "es": "C:\\User\\Desktop\\Files",
-                            "en": "C:\\User\\Desktop\\Files",
-                            "cn": "C:\\User\\Desktop\\Files"
-                        },
-                        "title": {
-                            "es": "Carpeta (Varios archivos):",
-                            "en": "Folder (Multiple files):"
-                        },
-                        "help": {
-                            "es": "Para varios adjuntos, ingresar ruta a carpeta",
-                            "en": "For several attachments, enter folder path"
-                        },
-                        "id": "attached_folder",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "send_mail",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
+        "es": {
+          "title": "Descargar adjuntos por ID",
+          "description": "Descarga adjuntos por ID y los guardar en la carpeta especificada",
+          "title_options": "Seleccione una opción",
+          "options": null
         },
-        {
-            "en": {
-                "title": "List all email",
-                "description": "List all email, you can specify a filter",
-                "title_options": "Select Option",
-                "options": null
+        "form": {
+          "css": "modal-lg",
+          "inputs": [
+            {
+              "type": "input",
+              "placeholder": "345",
+              "title": {
+                "es": "ID del email:",
+                "en": "Email ID:",
+                "cn": "Email ID:"
+              },
+              "id": "id_",
+              "css": "col-md-6"
             },
-            "es": {
-                "title": "Lista todos los email",
-                "description": "Lista todos los email, se puede especificar un filtro",
-                "title_options": "Seleccione una opción",
-                "options": null
+            {
+              "type": "input",
+              "placeholder": "inbox",
+              "title": {
+                "es": "Carpeta",
+                "en": "Folder"
+              },
+              "help": {
+                "es": "Por defecto, Inbox",
+                "en": "By default, Inbox"
+              },
+              "id": "folder",
+              "css": "col-md-6"
             },
-            "cn": {
-                "title": "List all email",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "SUBJECT \"COMPRA*\"",
-                        "title": {
-                            "es": "Filtro:",
-                            "en": "Filter:",
-                            "cn": "Filter:"
-                        },
-                        "help": {
-                            "es": "Dejar vacío para traerlos todos",
-                            "en": "Empty for get all",
-                            "cn": "Empty for get all"
-                        },
-                        "id": "filtro",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "345",
-                        "title": {
-                            "es": "Carpeta",
-                            "en": "Folder"
-                        },
-                        "help": {
-                            "es": "Por defecto, Inbox",
-                            "en": "By default, Inbox"
-                        },
-                        "id": "folder",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar a variable:",
-                            "en": "Asign to var:",
-                            "cn": "Asign to var:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Var name whitout {}",
-                            "cn": "Var name whitout {}"
-                        },
-                        "id": "var_",
-                        "css": "col-md-6"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "get_mail",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
+            {
+              "type": "folder_select",
+              "placeholder": "C:\\User\\Desktop",
+              "title": {
+                "es": "Ruta para descargar adjuntos:",
+                "en": "Path for download attachment:",
+                "cn": "Path for download attachment:"
+              },
+              "id": "att_folder",
+              "css": "col-md-6"
+            }
+          ]
         },
-        {
-            "en": {
-                "title": "List unread emails",
-                "description": "List all unread email, you can specify a filter",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Lista emails no leídos",
-                "description": "Lista emails no leídos",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "List unread email",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "SUBJECT \"COMPRA*\"",
-                        "title": {
-                            "es": "Filtro:",
-                            "en": "Filter:",
-                            "cn": "Filter:"
-                        },
-                        "help": {
-                            "es": "Dejar vacío para traerlos todos",
-                            "en": "Empty for get all",
-                            "cn": "Empty for get all"
-                        },
-                        "id": "filtro",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "inbox",
-                        "title": {
-                            "es": "Carpeta",
-                            "en": "Folder"
-                        },
-                        "help": {
-                            "es": "Por defecto, Inbox",
-                            "en": "By default, Inbox"
-                        },
-                        "id": "folder",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar a variable:",
-                            "en": "Asign to var:",
-                            "cn": "Asign to var:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Var name whitout {}",
-                            "cn": "Var name whitout {}"
-                        },
-                        "id": "var_",
-                        "css": "col-md-6"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "get_unread",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Read email for ID",
-                "description": "Read email for ID",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Leer email por ID",
-                "description": "Leer email por ID",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "Read email for ID",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "345",
-                        "title": {
-                            "es": "ID del email:",
-                            "en": "Email ID:",
-                            "cn": "Email ID:"
-                        },
-                        "id": "id_",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "inbox",
-                        "title": {
-                            "es": "Carpeta",
-                            "en": "Folder"
-                        },
-                        "help": {
-                            "es": "Por defecto, Inbox",
-                            "en": "By default, Inbox"
-                        },
-                        "id": "folder",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar a variable:",
-                            "en": "Asign to var:",
-                            "cn": "Asign to var:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Var name whitout {}",
-                            "cn": "Var name whitout {}"
-                        },
-                        "id": "var_",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "folder_select",
-                        "placeholder": "C:\\User\\Desktop",
-                        "title": {
-                            "es": "Ruta para descargar adjuntos:",
-                            "en": "Path for download attachment:",
-                            "cn": "Path for download attachment:"
-                        },
-                        "id": "att_folder",
-                        "css": "col-md-6"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "read_mail",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Create Folder",
-                "description": "Create Folder",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Crear Carpeta",
-                "description": "Crea una carpeta",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "Create Label",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "Ingrese nombre de la carpeta",
-                        "title": {
-                            "es": "Nombre Carpeta:",
-                            "en": "Folder Name:",
-                            "cn": "Folder Name:"
-                        },
-                        "id": "folder_name",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "create_folder",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Move email to folder",
-                "description": "Move email to folder",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Mover email a carpeta",
-                "description": "Mueve email a carpeta",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "Move email to label",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "Ingrese ID del email",
-                        "title": {
-                            "es": "ID del email:",
-                            "en": "Email ID:",
-                            "cn": "Email ID:"
-                        },
-                        "id": "id_",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "test",
-                        "title": {
-                            "es": "Carpeta de destino:",
-                            "en": "Folder name to send:"
-                        },
-                        "id": "label_",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "test",
-                        "title": {
-                            "es": "Nombre de la carpeta de origen:",
-                            "en": "From:",
-                            "cn": "From:"
-                        },
-                        "id": "from",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar resultado a variable:",
-                            "en": "Asign result to var:",
-                            "cn": "Asign result to var:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Var name without {}",
-                            "cn": "Var name without {}"
-                        },
-                        "remove_vars": true,
-                        "id": "var",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "move_mail",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Reply email for ID",
-                "description": "Reply email for ID",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Responder email por ID",
-                "description": "Responder email por ID",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "355",
-                        "title": {
-                            "es": "ID Email",
-                            "en": "Email ID"
-                        },
-                        "id": "id_",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "inbox",
-                        "title": {
-                            "es": "Carpeta del mail a responder",
-                            "en": "Email Folder to reply"
-                        },
-                        "id": "folder",
-                        "css": "col-md-6"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Esto es una prueba",
-                        "title": {
-                            "es": "Mensaje:",
-                            "en": "Body:",
-                            "cn": "Body:"
-                        },
-                        "id": "body",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "file_select",
-                        "placeholder": {
-                            "es": "C:\\User\\Desktop\\test.txt",
-                            "en": "C:\\User\\Desktop\\test.txt",
-                            "cn": "C:\\User\\Desktop\\test.txt"
-                        },
-                        "title": {
-                            "es": "Archivo Adjunto:",
-                            "en": "Attached File:",
-                            "cn": "Attached File:"
-                        },
-                        "id": "attached_file",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "reply_email",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Forward email for ID",
-                "description": "Forward email for ID",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Reenviar email por ID",
-                "description": "Reenviar email por ID",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "355",
-                        "title": {
-                            "es": "ID Email",
-                            "en": "Email ID"
-                        },
-                        "id": "id_",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "test@email.com",
-                        "title": {
-                            "es": "Email:",
-                            "en": "Email:",
-                            "cn": "Email:"
-                        },
-                        "id": "email",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "forward",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "List Folders",
-                "description": "List all Folders",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Listar Carpetas",
-                "description": "Devuelve todas las carpetas",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "Variable",
-                        "title": {
-                            "es": "Asignar resultado a variable:",
-                            "en": "Asign result to var:",
-                            "cn": "Asign result to var:"
-                        },
-                        "help": {
-                            "es": "Nombre de variable sin {}",
-                            "en": "Var name without {}",
-                            "cn": "Var name without {}"
-                        },
-                        "remove_vars": true,
-                        "id": "var",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "list_folders",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Mark email as unread",
-                "description": "Mark email as unread",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Marcar email como no leído",
-                "description": "Marcar email como no leído",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": [
-                    {
-                        "type": "input",
-                        "placeholder": "inbox",
-                        "title": {
-                            "es": "Nombre Carpeta:",
-                            "en": "Folder Name:",
-                            "cn": "Folder Name:"
-                        },
-                        "id": "folder",
-                        "css": "col-md-12"
-                    },
-                    {
-                        "type": "input",
-                        "placeholder": "Ingrese ID del email",
-                        "title": {
-                            "es": "ID del email:",
-                            "en": "Email ID:",
-                            "cn": "Email ID:"
-                        },
-                        "id": "id_",
-                        "css": "col-md-12"
-                    }
-                ]
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "markAsUnread",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        },
-        {
-            "en": {
-                "title": "Close Server",
-                "description": "Close server connection",
-                "title_options": "Select Option",
-                "options": null
-            },
-            "es": {
-                "title": "Cerrar Conexión",
-                "description": "Cierra la conexión del servidor",
-                "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "form": {
-                "css": "modal-lg",
-                "inputs": []
-            },
-            "video_youtube": "aMV6cXPMMSo",
-            "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
-            "module": "close",
-            "module_name": "Outlook365",
-            "visible": true,
-            "options": false,
-            "father": "module",
-            "group": "scripts",
-            "linux": true,
-            "windows": true,
-            "mac": true,
-            "docker": true
-        }
-    ]
+        "video_youtube": "aMV6cXPMMSo",
+        "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+        "module": "get_attachments",
+        "module_name": "Outlook365",
+        "visible": true,
+        "options": false,
+        "father": "module",
+        "group": "scripts",
+        "linux": true,
+        "windows": true,
+        "mac": true,
+        "docker": true
+      },
+    {
+      "en": {
+        "title": "Close Server",
+        "description": "Close server connection",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Cerrar Conexión",
+        "description": "Cierra la conexión del servidor",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": []
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
+      "module": "close",
+      "module_name": "Outlook365",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    }
+  ]
 }
