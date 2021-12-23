@@ -1,64 +1,83 @@
-# Outlook 
-Module to read, send, create folder and move email, for Outlook (Office 365)
-
-** it is only compatible with rocketbot versions higher than 2020.06.20. To download the version for Rocketbot 4.9 or lower, check this <a href="https://github.com/rocketbot-cl/Outlook365/releases/tag/4.9">link</a>
-
-## Commands
-<ul id="commands_readme">
-    <li>Server Configuration</li>
-    <li>Send Email</li>
-    <li>List all Email</li>
-    <li>List unread emails</li>
-    <li>Read email for ID</li>
-    <li>Create Folder</li>
-    <li>Move email to folder</li>
-    <li>Reply email for ID</li>
-    <li>Forward email ID</li>
-    <li>List Folders</li>
-    <li>Mark email as unread</li>
-    <li>Close Server</li>
-</ul>
-
-**In the example robot you must change the URL and credentials for yours.
-
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/Outlook/master/example/outlook.png)
-
-<strong>Video Example:</strong>
-
-[![Outlook365](https://img.youtube.com/vi/JYbdunZZVrA/0.jpg)](https://www.youtube.com/watch?v=JYbdunZZVrA "Outlook365")
 
 
-## Updates
-### 13-Aug-2021
-- Fix forward email
-- Fix send email without cc
-- Send email with bcc
-### 4-Aug-2021
-- Send local image in img tag
-- Text area in input to write body
 
-<h2>Dependencies</h2>
 
-<ul>
-  <li>
-    <strong>
-      <a href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a>
-    </strong> 
-  </li>  
-</ul> 
+# Outlook365
+  
+Módulo para realizar acciones en Outlook Office 365  
 
-<ul>
-  <li>
-    <strong>
-      <a href="https://pypi.org/project/mail-parser/">mail-parser</a>
-    </strong> 
-  </li>  
-</ul>  
+## Howto install this module
+  
+__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-<h2>License</h2>
 
-<p><a href="http://badges.mit-license.org" rel="nofollow"><img src="https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265" alt="License" data-canonical-src="http://img.shields.io/:license-mit-blue.svg?style=flat-square" style="max-width:100%;"></a></p>
 
-<ul>
-  <li><strong><a href="http://opensource.org/licenses/mit-license.php" rel="nofollow">MIT license</a></strong></li>
-</ul>  
+## Overview
+
+
+1. Server Configuration  
+Server Configuration
+
+2. Send Email  
+Send email, before you must configurate the server
+
+3. List all email  
+List all email, you can specify a filter
+
+4. List unread emails  
+List all unread email, you can specify a filter
+
+5. Read email for ID  
+Read email for ID
+
+6. Create Folder  
+Create Folder
+
+7. Move email to folder  
+Move email to folder
+
+8. Reply email for ID  
+Reply email for ID
+
+9. Forward email for ID  
+Forward email for ID
+
+10. List Folders  
+List all Folders
+
+11. Mark email as unread  
+Mark email as unread
+
+12. Download attachments by ID  
+Download attachments by ID and save them in the specified folder
+
+13. Close Server  
+Close server connection  
+
+
+
+### Changes
+Wed Sep 1 16:03:04 2021  Merge branch master of https://github.com/rocketbot-cl/Outlook365
+Wed Aug 4 15:06:39 2021  
+Merge pull request #2 from rocketbot-cl/QA
+Fri Jul 23 13:33:17 2021  Merge pull request #1 from rocketbot-cl/QA
+Mon Apr 
+19 11:28:09 2021  Fix read email.
+Wed Apr 1 10:11:23 2020  Merge branch master of https://github.com/rocketbot-
+cl/Outlook365
+Tue Jan 28 14:30:08 2020  Merge branch master of https://github.com/rocketbot-cl/Outlook365
+
+----
+### OS
+
+- windows
+- mac
+- linux
+- docker
+
+### Dependencies
+- [**mail-parser**](https://pypi.org/project/mail-parser/)
+### License
+  
+![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
+[MIT](http://opensource.org/licenses/mit-license.ph)

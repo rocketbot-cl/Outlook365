@@ -1,7 +1,6 @@
 
 __author__ = "Rocketbot"
 
-import poplib
 import imaplib
 import mimetypes
 import os
@@ -67,16 +66,6 @@ class Mail:
         print(self.imap.login(self.user, self.pwd))
         return self.imap
 
-    def connect_pop(self):
-        print("Connecting Imap")
-        try:
-            self.pop = poplib.POP3_SSL(self.imap_host, self.imap_port)
-        except:
-            self.pop = imaplib.POP3(self.imap_host, self.imap_port)
-
-        print(self.pop.user(self.user))
-        print(self.pop.pass_(self.pwd))
-        return self.pop
 
     def add_body(self, msg, body):
         body = body.replace("\n", "<br/>")
@@ -244,6 +233,21 @@ class Mail:
             'to': ", ".join([b for (a, b) in mail_.to]),
             'body': bs, 'files': filenames
         }
+
+    def get_attachments(self,  id_, folder, att_folder):
+        type, data = self.get_email_from_id(id_, folder)
+        self.imap.logout()
+        raw_email = data[0][1]
+        try:
+            raw_email_string = raw_email.decode('utf-8')
+        except:
+            raw_email_string = raw_email.decode('latin-1')
+        mail_ = mailparser.parse_from_string(raw_email_string)
+        filenames = []
+        for att in mail_.attachments:
+            name = att['filename']
+            filenames.append(name)
+            self.save_file(att_folder, name, att['payload'])
 
     def reply_mail(self, id_, folder, body, att_file):
         type, data = self.get_email_from_id(id_, folder)
