@@ -1,0 +1,6 @@
+Wed Sep 1 16:03:04 2021  Merge branch master of https://github.com/rocketbot-cl/Outlook365
+Wed Aug 4 15:06:39 2021  Merge pull request #2 from rocketbot-cl/QA
+Fri Jul 23 13:33:17 2021  Merge pull request #1 from rocketbot-cl/QA
+Mon Apr 19 11:28:09 2021  Fix read email.
+Wed Apr 1 10:11:23 2020  Merge branch master of https://github.com/rocketbot-cl/Outlook365
+Tue Jan 28 14:30:08 2020  Merge branch master of https://github.com/rocketbot-cl/Outlook365
