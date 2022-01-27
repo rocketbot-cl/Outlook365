@@ -166,6 +166,7 @@ try:
 
         final = outlook_365.read_mail(id_, folder, att_folder)
         if var_:
+            del final["mail"]
             SetVar(var_, final)
 
     if module == "reply_email":
