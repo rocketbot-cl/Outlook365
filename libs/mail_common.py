@@ -222,6 +222,7 @@ class Mail:
         filenames = []
         for att in mail_.attachments:
             name = att['filename']
+            name = name.replace("\r","").replace("\n","")
             filenames.append(name)
             self.save_file(att_folder, name, att['payload'])
 
