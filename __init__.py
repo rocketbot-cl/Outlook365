@@ -30,8 +30,21 @@ GetParams = GetParams  # type: ignore
 PrintException = PrintException  # type: ignore 
 tmp_global_obj = tmp_global_obj  # type: ignore
 
+import base64
+import email
+import imaplib
+from inspect import Traceback
 import os
+import re
+import smtplib
 import sys
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.utils import make_msgid, parsedate_to_datetime
+from textwrap import dedent
+from typing import Union
 base_path = tmp_global_obj["basepath"] #get rocketbot directory
 cur_path = os.path.join(base_path, 'modules', 'Outlook365', 'libs')
 
@@ -64,7 +77,8 @@ try:
         password = GetParams('password')
         timeout = GetParams('timeout')
         var_ = GetParams('var_')
-
+        not_imap = GetParams('not_imap')
+        
         if timeout is None:
             timeout = 99
         if isinstance(timeout, str) and not timeout.isdigit():
@@ -75,7 +89,12 @@ try:
         try:
             outlook_365 = Outlook365(fromaddr, password, timeout)
             server = outlook_365.connect_smtp()
-            outlook_365.connect_imap()
+            
+            if not_imap:
+                print("IMAP connection avoided.")
+            else:
+                outlook_365.connect_imap()
+                
             conx = True
         except:
             PrintException()
@@ -91,6 +110,8 @@ try:
         bcc = GetParams('bcc')
         attached_file = GetParams('attached_file')
         files = GetParams('attached_folder')
+        
+        type_ = 'multipart'
 
         if cc is None:
             cc = ""
@@ -98,7 +119,6 @@ try:
             bcc = ""
         if attached_file is None:
             attached_file = ""
-        
         if files is None:
             files = ""
 
@@ -108,7 +128,7 @@ try:
             cc=cc,
             bcc=bcc,
             attachments_path=[attached_file, files],
-            type_="multipart",
+            type_=type_,
             body=body_
         )
 
@@ -149,7 +169,6 @@ try:
             filtro = ""
 
         filtro = " ".join(["UNSEEN", filtro]).strip()
-        print(filtro)
         lista = outlook_365.get_mail(filtro, folder)
 
         if var_:
@@ -160,28 +179,48 @@ try:
         var_ = GetParams('var_')
         att_folder = GetParams('att_folder')
         folder = GetParams("folder")
+        not_parsed = GetParams("not_parsed")
 
         if not folder:
             folder = "inbox"
 
         final = outlook_365.read_mail(id_, folder, att_folder)
+        
         if var_:
             del final["mail"]
+            if len(final['body']) > 1:
+                if not not_parsed or eval(not_parsed) == False:
+                    del final['body'][1]
+                else:
+                    del final['body'][0]
+
             SetVar(var_, final)
 
     if module == "reply_email":
 
         id_ = GetParams('id_')
         body_ = GetParams('body')
-        attached_file = GetParams('attached_file')
         folder = GetParams("folder")
+        cc = GetParams('cc')
+        bcc = GetParams('bcc')
+        attached_file = GetParams('attached_file')
+        files = GetParams('attached_folder')
+
+        if cc is None:
+            cc = ""
+        if bcc is None:
+            bcc = ""
+        
         if not folder:
             folder = "inbox"
-        attached_file_list = []
-        if attached_file:
-            attached_file_list = [attached_file]
-        print(attached_file_list)
-        outlook_365.reply_mail(id_, folder, body_, attached_file_list)
+        if attached_file is None:
+            attached_file = ""
+        if files is None:
+            files = ""
+        
+        attached_file_list = [attached_file, files]
+        
+        outlook_365.reply_mail(id_, folder, body_, attached_file_list, cc, bcc)
 
     if module == "create_folder":
 
@@ -212,9 +251,16 @@ try:
     if module == "forward":
         id_ = GetParams('id_')
         to_ = GetParams('email')
+        cc = GetParams('cc')
+        bcc = GetParams('bcc')
         attached_file = GetParams('attached_file')
 
-        outlook_365.forward_email(id_, "inbox", attached_file, to_)
+        if cc is None:
+            cc = ""
+        if bcc is None:
+            bcc = ""
+
+        outlook_365.forward_email(id_, "inbox", attached_file, to_, cc, bcc)
 
     if module == "list_folders":
         result = GetParams('var')
@@ -251,5 +297,7 @@ try:
         outlook_365 = None
 
 except Exception as e:
+    import traceback
+    traceback.print_exc()
     PrintException()
     raise e
