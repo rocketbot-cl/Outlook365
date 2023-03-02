@@ -1,10 +1,10 @@
 {
-  "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>, Danilo Toro - Rocketbot - <juan.siro@rocketbot.com>",
+  "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>, Juan Siro - Rocketbot - <juan.siro@rocketbot.com>",
   "description": "Módulo para realizar acciones en Outlook Office 365",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.8.9",
+  "version": "1.9.0",
   "license": "MIT",
-  "homepage": "http://rocketbot.co/",
+  "homepage": "http://rocketbot.com/",
   "linux": true,
   "windows": true,
   "mac": true,
@@ -518,14 +518,14 @@
               "pr": ""
             },
             "title": {
-              "es": "Cuerpo de email sin parsear",
-              "en": "Email raw body",
-              "pr": "Corpo do e-mail não analisado"
+              "es": "Cuerpo de email en HTML",
+              "en": "Email HTML body",
+              "pr": "Corpo do e-mail HTML"
             },
             "description": {
-              "es": "Si se marca esta casillaa, devolvera el cuerpo del email sin parsear.",
-              "en": "If this box is marked, will bring the raw version of email body.",
-              "pr": "Si se marca esta casilla, retornará o corpo do e-mail sem analisar."
+              "es": "Si se marca esta casilla, devolvera el cuerpo del email en versión HTML.",
+              "en": "If this box is marked, will bring the HTML version of email body.",
+              "pr": "Se esta caixa estiver marcada, retornará o corpo do e-mail na versão HTML."
             },
             "id": "not_parsed",
             "css": "col-md-12"

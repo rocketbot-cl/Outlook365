@@ -2,7 +2,6 @@
 __author__ = "Rocketbot"
 
 from email import message
-from email.mime.image import MIMEImage
 import imaplib
 import mimetypes
 import os
@@ -12,6 +11,7 @@ from email.message import EmailMessage
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from email.utils import make_msgid
 from email.parser import Parser
 from email import encoders
@@ -153,6 +153,7 @@ class Mail:
         mail['to'] = to
         mail['from'] = from_
         mail['Cc'] = cc
+        mail['Bcc'] = bcc
         return mail
 
     def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="", type_="message", reference=None):
