@@ -1,10 +1,10 @@
 {
-  "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>",
+  "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>, Juan Siro - Rocketbot - <juan.siro@rocketbot.com>",
   "description": "Módulo para realizar acciones en Outlook Office 365",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "8.7",
+  "version": "1.9.0",
   "license": "MIT",
-  "homepage": "http://rocketbot.co/",
+  "homepage": "http://rocketbot.com/",
   "linux": true,
   "windows": true,
   "mac": true,
@@ -74,6 +74,26 @@
             },
             "id": "password",
             "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Sin conexión IMAP",
+              "en": "Not IMAP connection",
+              "pr": "Sem conexão IMAP"
+            },
+            "description": {
+              "es": "Si se marca esta casillaa, evita la conexión IMAP.",
+              "en": "If this box is marked, it avoids IMAP connection.",
+              "pr": "Si se marca esta casilla, evita a conexão IMAP."
+            },
+            "id": "not_imap",
+            "css": "col-md-12"
           },
           {
             "type": "input",
@@ -190,6 +210,10 @@
               "es": "Mensaje:",
               "en": "Body:",
               "cn": "Body:"
+            },
+            "help": {
+              "es": "Puede contener html",
+              "en": "Can contain html"
             },
             "id": "body",
             "css": "col-md-12"
@@ -485,6 +509,26 @@
             },
             "id": "att_folder",
             "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Cuerpo de email en HTML",
+              "en": "Email HTML body",
+              "pr": "Corpo do e-mail HTML"
+            },
+            "description": {
+              "es": "Si se marca esta casilla, devolvera el cuerpo del email en versión HTML.",
+              "en": "If this box is marked, will bring the HTML version of email body.",
+              "pr": "Se esta caixa estiver marcada, retornará o corpo do e-mail na versão HTML."
+            },
+            "id": "not_parsed",
+            "css": "col-md-12"
           }
         ]
       },
@@ -673,7 +717,37 @@
           },
           {
             "type": "input",
-            "placeholder": "Esto es una prueba",
+            "placeholder": "cc@mail.com, cc2@mail.com",
+            "title": {
+              "es": "Copia:",
+              "en": "Cc:",
+              "cn": "Cc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "cc",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "bcc@mail.com, bcc2@mail.com",
+            "title": {
+              "es": "Copia oculta:",
+              "en": "Bcc:",
+              "cn": "Bcc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "bcc",
+            "css": "col-md-12"
+          },
+          {
+            "type": "textarea",
+            "placeholder": "Body",
             "title": {
               "es": "Mensaje:",
               "en": "Body:",
@@ -695,6 +769,24 @@
               "cn": "Attached File:"
             },
             "id": "attached_file",
+            "css": "col-md-12"
+          },
+          {
+            "type": "folder_select",
+            "placeholder": {
+              "es": "C:\\User\\Desktop\\Files",
+              "en": "C:\\User\\Desktop\\Files",
+              "cn": "C:\\User\\Desktop\\Files"
+            },
+            "title": {
+              "es": "Carpeta (Varios archivos):",
+              "en": "Folder (Multiple files):"
+            },
+            "help": {
+              "es": "Para varios adjuntos, ingresar ruta a carpeta",
+              "en": "For several attachments, enter folder path"
+            },
+            "id": "attached_folder",
             "css": "col-md-12"
           }
         ]
@@ -747,6 +839,36 @@
               "cn": "Email:"
             },
             "id": "email",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "cc@mail.com, cc2@mail.com",
+            "title": {
+              "es": "Copia:",
+              "en": "Cc:",
+              "cn": "Cc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "cc",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "bcc@mail.com, bcc2@mail.com",
+            "title": {
+              "es": "Copia oculta:",
+              "en": "Bcc:",
+              "cn": "Bcc:"
+            },
+            "help": {
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated"
+            },
+            "id": "bcc",
             "css": "col-md-12"
           }
         ]
