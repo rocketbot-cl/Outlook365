@@ -15,6 +15,14 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
+## How to use this module
+
+To use this module the user must use an App Password. To create a new app password take the following steps:
+1. Go to the Security basics page (https://account.microsoft.com/security?refd=support.microsoft.com) and sign in to your Microsoft account. 
+2. Select More security options. 
+3. Under App passwords, select Create a new app password. A new app password is generated and appears on your screen.
+4. Enter this app password where you would enter your normal Microsoft account password in the application.
+
 
 ## Description of the commands
 
