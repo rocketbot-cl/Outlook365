@@ -304,6 +304,7 @@
               "es": "Nombre de variable sin {}",
               "en": "Var name whitout {}"
             },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -377,6 +378,7 @@
               "es": "Nombre de variable sin {}",
               "en": "Var name whitout {}"
             },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           }
@@ -446,6 +448,7 @@
               "es": "Nombre de variable sin {}",
               "en": "Var name whitout {}"
             },
+            "remove_vars": true,
             "id": "var_",
             "css": "col-md-6"
           },
