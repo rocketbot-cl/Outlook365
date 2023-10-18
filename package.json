@@ -1,8 +1,13 @@
 {
   "author": "Marcela Vergara - Rocketboot - <marcela@rocketbot.com>, Danilo Toro - Rocketbot - <danilo.toro@rocketbot.cl>, Juan Siro - Rocketbot - <juan.siro@rocketbot.com>",
-  "description": "Módulo para realizar acciones en Outlook Office 365",
+  "description_lang": {
+    "es": "Envia, lee, responde correos y gestiona tu casilla de Outlook.",
+    "en": "Send, read, reply to emails and manage your Outlook mailbox.",
+    "pr": "Envie, leia, responda e-mails e gerencie sua caixa de correio do Outlook."
+  },
+  "description": "Module to perform actions in Outlook Office 365 | Módulo para realizar acciones en Outlook Office 365",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.9.0",
+  "version": "1.9.2",
   "license": "MIT",
   "homepage": "http://rocketbot.com/",
   "linux": true,
@@ -16,7 +21,7 @@
   "title": {
     "en": "Outlook365",
     "es": "Outlook365",
-    "cn": "Outlook365"
+    "pr": "Outlook365"
   },
   "icon": "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMTk3NkQyOyIgZD0iTTQ5NiwxMTIuMDExSDI3MmMtOC44MzIsMC0xNiw3LjE2OC0xNiwxNnM3LjE2OCwxNiwxNiwxNmgxNzcuMzc2bC05OC4zMDQsNzYuNDQ4bC03MC40OTYtNDQuODMyICBsLTE3LjE1MiwyNy4wMDhsODAsNTAuODhjMi41OTIsMS42NjQsNS42LDIuNDk2LDguNTc2LDIuNDk2YzMuNDU2LDAsNi45NDQtMS4xMiw5LjgyNC0zLjM2TDQ4MCwxNjAuNzE1djIwNy4yOTZIMjcyICBjLTguODMyLDAtMTYsNy4xNjgtMTYsMTZzNy4xNjgsMTYsMTYsMTZoMjI0YzguODMyLDAsMTYtNy4xNjgsMTYtMTZ2LTI1NkM1MTIsMTE5LjE3OSw1MDQuODMyLDExMi4wMTEsNDk2LDExMi4wMTF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMTk2RjM7IiBkPSJNMjgyLjIwOCwxOS42OTFjLTMuNjQ4LTMuMDQtOC41NDQtNC4zNTItMTMuMTUyLTMuMzkybC0yNTYsNDhDNS40NzIsNjUuNzA3LDAsNzIuMjk5LDAsODAuMDExdjM1MiAgYzAsNy42OCw1LjQ3MiwxNC4zMDQsMTMuMDU2LDE1LjcxMmwyNTYsNDhjMC45NiwwLjE5MiwxLjk1MiwwLjI4OCwyLjk0NCwwLjI4OGMzLjcxMiwwLDcuMzI4LTEuMjgsMTAuMjA4LTMuNjggIGMzLjY4LTMuMDQsNS43OTItNy41ODQsNS43OTItMTIuMzJ2LTQ0OEMyODgsMjcuMjQzLDI4NS44ODgsMjIuNzMxLDI4Mi4yMDgsMTkuNjkxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkFGQUZBOyIgZD0iTTE0NCwzNjguMDExYy00NC4wOTYsMC04MC00My4wNzItODAtOTZzMzUuOTA0LTk2LDgwLTk2czgwLDQzLjA3Miw4MCw5NiAgUzE4OC4wOTYsMzY4LjAxMSwxNDQsMzY4LjAxMXogTTE0NCwyMDguMDExYy0yNi40NjQsMC00OCwyOC43MDQtNDgsNjRzMjEuNTM2LDY0LDQ4LDY0czQ4LTI4LjcwNCw0OC02NCAgUzE3MC40NjQsMjA4LjAxMSwxNDQsMjA4LjAxMXoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==",
   "children": [
@@ -33,12 +38,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "Server Configuration",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -47,8 +46,7 @@
             "placeholder": "user@example.com",
             "title": {
               "es": "User:",
-              "en": "Usuario:",
-              "cn": "User:"
+              "en": "Usuario:"
             },
             "id": "from",
             "css": "col-md-8"
@@ -58,8 +56,7 @@
             "placeholder": "99",
             "title": {
               "es": "Timeout:",
-              "en": "Timeout:",
-              "cn": "Timeout:"
+              "en": "Timeout:"
             },
             "id": "timeout",
             "css": "col-md-4"
@@ -69,8 +66,7 @@
             "placeholder": "******",
             "title": {
               "es": "Contraseña:",
-              "en": "Password:",
-              "cn": "Password:"
+              "en": "Password:"
             },
             "id": "password",
             "css": "col-md-6"
@@ -79,18 +75,15 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": "",
-              "pr": ""
+              "en": ""
             },
             "title": {
               "es": "Sin conexión IMAP",
-              "en": "Not IMAP connection",
-              "pr": "Sem conexão IMAP"
+              "en": "Not IMAP connection"
             },
             "description": {
-              "es": "Si se marca esta casillaa, evita la conexión IMAP.",
-              "en": "If this box is marked, it avoids IMAP connection.",
-              "pr": "Si se marca esta casilla, evita a conexão IMAP."
+              "es": "Si se marca esta casilla, evita la conexión IMAP.",
+              "en": "If this box is marked, it avoids IMAP connection."
             },
             "id": "not_imap",
             "css": "col-md-12"
@@ -138,12 +131,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "Send Email",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -152,12 +139,11 @@
             "placeholder": "to@mail.com, to2@mail.com",
             "title": {
               "es": "Para:",
-              "en": "To:",
-              "cn": "To:"
+              "en": "To:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "to",
             "css": "col-md-12"
@@ -166,13 +152,12 @@
             "type": "input",
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
-              "es": "Copia:",
-              "en": "Cc:",
-              "cn": "Cc:"
+              "es": "Cc:",
+              "en": "Cc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "cc",
             "css": "col-md-12"
@@ -181,13 +166,12 @@
             "type": "input",
             "placeholder": "bcc@mail.com, bcc2@mail.com",
             "title": {
-              "es": "Copia oculta:",
-              "en": "Bcc:",
-              "cn": "Bcc:"
+              "es": "Bcc:",
+              "en": "Bcc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -197,8 +181,7 @@
             "placeholder": "Nuevo mail",
             "title": {
               "es": "Asunto:",
-              "en": "Subject:",
-              "cn": "Subject:"
+              "en": "Subject:"
             },
             "id": "subject",
             "css": "col-md-12"
@@ -208,8 +191,7 @@
             "placeholder": "Esto es una prueba",
             "title": {
               "es": "Mensaje:",
-              "en": "Body:",
-              "cn": "Body:"
+              "en": "Body:"
             },
             "help": {
               "es": "Puede contener html",
@@ -222,13 +204,11 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\test.txt",
-              "en": "C:\\User\\Desktop\\test.txt",
-              "cn": "C:\\User\\Desktop\\test.txt"
+              "en": "C:\\User\\Desktop\\test.txt"
             },
             "title": {
               "es": "Archivo Adjunto:",
-              "en": "Attached File:",
-              "cn": "Attached File:"
+              "en": "Attached File:"
             },
             "help": {
               "es": "Opción para solo un adjunto, si además se ingresa carpeta sólo se considerará esta última",
@@ -241,8 +221,7 @@
             "type": "folder_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\Files",
-              "en": "C:\\User\\Desktop\\Files",
-              "cn": "C:\\User\\Desktop\\Files"
+              "en": "C:\\User\\Desktop\\Files"
             },
             "title": {
               "es": "Carpeta (Varios archivos):",
@@ -283,12 +262,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "List all email",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -297,13 +270,11 @@
             "placeholder": "SUBJECT \"COMPRA*\"",
             "title": {
               "es": "Filtro:",
-              "en": "Filter:",
-              "cn": "Filter:"
+              "en": "Filter:"
             },
             "help": {
               "es": "Dejar vacío para traerlos todos",
-              "en": "Empty for get all",
-              "cn": "Empty for get all"
+              "en": "Empty for get all"
             },
             "id": "filtro",
             "css": "col-md-12"
@@ -327,13 +298,11 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:",
-              "cn": "Asign to var:"
+              "en": "Asign to var:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}",
-              "cn": "Var name whitout {}"
+              "en": "Var name whitout {}"
             },
             "id": "var_",
             "css": "col-md-6"
@@ -366,12 +335,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "List unread email",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -380,13 +343,11 @@
             "placeholder": "SUBJECT \"COMPRA*\"",
             "title": {
               "es": "Filtro:",
-              "en": "Filter:",
-              "cn": "Filter:"
+              "en": "Filter:"
             },
             "help": {
               "es": "Dejar vacío para traerlos todos",
-              "en": "Empty for get all",
-              "cn": "Empty for get all"
+              "en": "Empty for get all"
             },
             "id": "filtro",
             "css": "col-md-12"
@@ -410,13 +371,11 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:",
-              "cn": "Asign to var:"
+              "en": "Asign to var:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}",
-              "cn": "Var name whitout {}"
+              "en": "Var name whitout {}"
             },
             "id": "var_",
             "css": "col-md-6"
@@ -449,12 +408,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "Read email for ID",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -463,8 +416,7 @@
             "placeholder": "345",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:",
-              "cn": "Email ID:"
+              "en": "Email ID:"
             },
             "id": "id_",
             "css": "col-md-6"
@@ -488,13 +440,11 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:",
-              "cn": "Asign to var:"
+              "en": "Asign to var:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}",
-              "cn": "Var name whitout {}"
+              "en": "Var name whitout {}"
             },
             "id": "var_",
             "css": "col-md-6"
@@ -504,8 +454,7 @@
             "placeholder": "C:\\User\\Desktop",
             "title": {
               "es": "Ruta para descargar adjuntos:",
-              "en": "Path for download attachment:",
-              "cn": "Path for download attachment:"
+              "en": "Path for download attachment:"
             },
             "id": "att_folder",
             "css": "col-md-6"
@@ -514,18 +463,15 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": "",
-              "pr": ""
+              "en": ""
             },
             "title": {
               "es": "Cuerpo de email en HTML",
-              "en": "Email HTML body",
-              "pr": "Corpo do e-mail HTML"
+              "en": "Email HTML body"
             },
             "description": {
               "es": "Si se marca esta casilla, devolvera el cuerpo del email en versión HTML.",
-              "en": "If this box is marked, will bring the HTML version of email body.",
-              "pr": "Se esta caixa estiver marcada, retornará o corpo do e-mail na versão HTML."
+              "en": "If this box is marked, will bring the HTML version of email body."
             },
             "id": "not_parsed",
             "css": "col-md-12"
@@ -558,12 +504,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "Create Label",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -572,8 +512,7 @@
             "placeholder": "Ingrese nombre de la carpeta",
             "title": {
               "es": "Nombre Carpeta:",
-              "en": "Folder Name:",
-              "cn": "Folder Name:"
+              "en": "Folder Name:"
             },
             "id": "folder_name",
             "css": "col-md-12"
@@ -606,12 +545,6 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
-      "cn": {
-        "title": "Move email to label",
-        "description": "输入要用逗号分隔的要清理的变量",
-        "title_options": "选择选项",
-        "options": null
-      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -620,8 +553,7 @@
             "placeholder": "Ingrese ID del email",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:",
-              "cn": "Email ID:"
+              "en": "Email ID:"
             },
             "id": "id_",
             "css": "col-md-12"
@@ -641,8 +573,7 @@
             "placeholder": "test",
             "title": {
               "es": "Nombre de la carpeta de origen:",
-              "en": "From:",
-              "cn": "From:"
+              "en": "Source folder name:"
             },
             "id": "from",
             "css": "col-md-12"
@@ -652,13 +583,11 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Asign result to var:",
-              "cn": "Asign result to var:"
+              "en": "Asign result to var:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name without {}",
-              "cn": "Var name without {}"
+              "en": "Var name without {}"
             },
             "remove_vars": true,
             "id": "var",
@@ -719,13 +648,12 @@
             "type": "input",
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
-              "es": "Copia:",
-              "en": "Cc:",
-              "cn": "Cc:"
+              "es": "Cc:",
+              "en": "Cc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "cc",
             "css": "col-md-12"
@@ -735,12 +663,11 @@
             "placeholder": "bcc@mail.com, bcc2@mail.com",
             "title": {
               "es": "Copia oculta:",
-              "en": "Bcc:",
-              "cn": "Bcc:"
+              "en": "Bcc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -750,8 +677,7 @@
             "placeholder": "Body",
             "title": {
               "es": "Mensaje:",
-              "en": "Body:",
-              "cn": "Body:"
+              "en": "Body:"
             },
             "id": "body",
             "css": "col-md-12"
@@ -760,13 +686,11 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\test.txt",
-              "en": "C:\\User\\Desktop\\test.txt",
-              "cn": "C:\\User\\Desktop\\test.txt"
+              "en": "C:\\User\\Desktop\\test.txt"
             },
             "title": {
               "es": "Archivo Adjunto:",
-              "en": "Attached File:",
-              "cn": "Attached File:"
+              "en": "Attached File:"
             },
             "id": "attached_file",
             "css": "col-md-12"
@@ -775,8 +699,7 @@
             "type": "folder_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\Files",
-              "en": "C:\\User\\Desktop\\Files",
-              "cn": "C:\\User\\Desktop\\Files"
+              "en": "C:\\User\\Desktop\\Files"
             },
             "title": {
               "es": "Carpeta (Varios archivos):",
@@ -835,8 +758,7 @@
             "placeholder": "test@email.com",
             "title": {
               "es": "Email:",
-              "en": "Email:",
-              "cn": "Email:"
+              "en": "Email:"
             },
             "id": "email",
             "css": "col-md-12"
@@ -845,13 +767,12 @@
             "type": "input",
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
-              "es": "Copia:",
-              "en": "Cc:",
-              "cn": "Cc:"
+              "es": "Cc:",
+              "en": "Cc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "cc",
             "css": "col-md-12"
@@ -865,8 +786,8 @@
               "cn": "Bcc:"
             },
             "help": {
-              "es": "para varios destinatarios separar por coma",
-              "en": "for multiple recipients, comma separated"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -907,13 +828,11 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Asign result to var:",
-              "cn": "Asign result to var:"
+              "en": "Asign result to var:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name without {}",
-              "cn": "Var name without {}"
+              "en": "Var name without {}"
             },
             "remove_vars": true,
             "id": "var",
@@ -955,8 +874,7 @@
             "placeholder": "inbox",
             "title": {
               "es": "Nombre Carpeta:",
-              "en": "Folder Name:",
-              "cn": "Folder Name:"
+              "en": "Folder Name:"
             },
             "id": "folder",
             "css": "col-md-12"
@@ -966,8 +884,7 @@
             "placeholder": "Ingrese ID del email",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:",
-              "cn": "Email ID:"
+              "en": "Email ID:"
             },
             "id": "id_",
             "css": "col-md-12"
@@ -1008,8 +925,7 @@
               "placeholder": "345",
               "title": {
                 "es": "ID del email:",
-                "en": "Email ID:",
-                "cn": "Email ID:"
+                "en": "Email ID:"
               },
               "id": "id_",
               "css": "col-md-6"
@@ -1033,8 +949,7 @@
               "placeholder": "C:\\User\\Desktop",
               "title": {
                 "es": "Ruta para descargar adjuntos:",
-                "en": "Path for download attachment:",
-                "cn": "Path for download attachment:"
+                "en": "Path for download attachment:"
               },
               "id": "att_folder",
               "css": "col-md-6"

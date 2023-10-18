@@ -30,13 +30,7 @@ GetParams = GetParams  # type: ignore
 PrintException = PrintException  # type: ignore 
 tmp_global_obj = tmp_global_obj  # type: ignore
 
-import base64
-import email
-import imaplib
-from inspect import Traceback
 import os
-import re
-import smtplib
 import sys
 from email import encoders
 from email.mime.base import MIMEBase
@@ -239,7 +233,7 @@ try:
             raise Exception("No ha ingresado ID de email a mover")
         if not label_:
             raise Exception("No ha ingresado carpeta de destino")
-        if not from_:
+        if not from_ or from_ == "Inbox":
             from_ = "inbox"
 
         res = False

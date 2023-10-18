@@ -4,129 +4,139 @@
 
 # Outlook365
   
-Módulo para realizar acciones en Outlook Office 365  
+Send, read, reply to emails and manage your Outlook mailbox.  
+
+*Read this in other languages: [English](Manual_Outlook365.md), [Português](Manual_Outlook365.pr.md), [Español](Manual_Outlook365.es.md)*
   
-![banner](/docs/imgs/Banner_Outlook365.png)
-## Como instalar este módulo
+![banner](imgs/Banner_Outlook365.png)
+## How to install this module
   
-__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
+## Description of the commands
 
-## Descripción de los comandos
-
-### Configurar Servidor
+### Server Configuration
   
-Configurar Servidor
-|Parámetros|Descripción|ejemplo|
+Server Configuration
+|Parameters|Description|example|
 | --- | --- | --- |
-|User||user@example.com|
+|Usuario||user@example.com|
 |Timeout||99|
-|Contraseña||******|
-|Asignar resultado a variable||Variable|
+|Password||******|
+|Not IMAP connection|If this box is marked, it avoids IMAP connection.||
+|Assign result to a Variable||Variable|
 
-### Enviar Email
+### Send Email
   
-Envia un email, previamente debe configurar el servidor
-|Parámetros|Descripción|ejemplo|
+Send email, before you must configurate the server
+|Parameters|Description|example|
 | --- | --- | --- |
-|Para||to@mail.com, to2@mail.com|
-|Copia||cc@mail.com, cc2@mail.com|
-|Copia oculta||bcc@mail.com, bcc2@mail.com|
-|Asunto||Nuevo mail|
-|Mensaje||Esto es una prueba|
-|Archivo Adjunto||C:\User\Desktop\test.txt|
-|Carpeta (Varios archivos)||C:\User\Desktop\Files|
+|To||to@mail.com, to2@mail.com|
+|Cc||cc@mail.com, cc2@mail.com|
+|Bcc||bcc@mail.com, bcc2@mail.com|
+|Subject||Nuevo mail|
+|Body||Esto es una prueba|
+|Attached File||C:\User\Desktop\test.txt|
+|Folder (Multiple files)||C:\User\Desktop\Files|
 
-### Lista todos los email
+### List all email
   
-Lista todos los email, se puede especificar un filtro
-|Parámetros|Descripción|ejemplo|
+List all email, you can specify a filter
+|Parameters|Description|example|
 | --- | --- | --- |
-|Filtro||SUBJECT "COMPRA*"|
-|Carpeta||345|
-|Asignar a variable||Variable|
+|Filter||SUBJECT "COMPRA*"|
+|Folder||345|
+|Asign to var||Variable|
 
-### Lista emails no leídos
+### List unread emails
   
-Lista emails no leídos
-|Parámetros|Descripción|ejemplo|
+List all unread email, you can specify a filter
+|Parameters|Description|example|
 | --- | --- | --- |
-|Filtro||SUBJECT "COMPRA*"|
-|Carpeta||inbox|
-|Asignar a variable||Variable|
+|Filter||SUBJECT "COMPRA*"|
+|Folder||inbox|
+|Asign to var||Variable|
 
-### Leer email por ID
+### Read email for ID
   
-Leer email por ID
-|Parámetros|Descripción|ejemplo|
+Read email for ID
+|Parameters|Description|example|
 | --- | --- | --- |
-|ID del email||345|
-|Carpeta||inbox|
-|Asignar a variable||Variable|
-|Ruta para descargar adjuntos||C:\User\Desktop|
+|Email ID||345|
+|Folder||inbox|
+|Asign to var||Variable|
+|Path for download attachment||C:\User\Desktop|
+|Email HTML body|If this box is marked, will bring the HTML version of email body.||
 
-### Crear Carpeta
+### Create Folder
   
-Crea una carpeta
-|Parámetros|Descripción|ejemplo|
+Create Folder
+|Parameters|Description|example|
 | --- | --- | --- |
-|Nombre Carpeta||Ingrese nombre de la carpeta|
+|Folder Name||Ingrese nombre de la carpeta|
 
-### Mover email a carpeta
+### Move email to folder
   
-Mueve email a carpeta
-|Parámetros|Descripción|ejemplo|
+Move email to folder
+|Parameters|Description|example|
 | --- | --- | --- |
-|ID del email||Ingrese ID del email|
-|Carpeta de destino||test|
-|Nombre de la carpeta de origen||test|
-|Asignar resultado a variable||Variable|
+|Email ID||Ingrese ID del email|
+|Folder name to send||test|
+|Source folder name||test|
+|Asign result to var||Variable|
 
-### Responder email por ID
+### Reply email for ID
   
-Responder email por ID
-|Parámetros|Descripción|ejemplo|
+Reply email for ID
+|Parameters|Description|example|
 | --- | --- | --- |
-|ID Email||355|
-|Carpeta del mail a responder||inbox|
-|Mensaje||Esto es una prueba|
-|Archivo Adjunto||C:\User\Desktop\test.txt|
+|Email ID||355|
+|Email Folder to reply||inbox|
+|Cc||cc@mail.com, cc2@mail.com|
+|Bcc||bcc@mail.com, bcc2@mail.com|
+|Body||Body|
+|Attached File||C:\User\Desktop\test.txt|
+|Folder (Multiple files)||C:\User\Desktop\Files|
 
-### Reenviar email por ID
+### Forward email for ID
   
-Reenviar email por ID
-|Parámetros|Descripción|ejemplo|
+Forward email for ID
+|Parameters|Description|example|
 | --- | --- | --- |
-|ID Email||355|
+|Email ID||355|
 |Email||test@email.com|
+|Cc||cc@mail.com, cc2@mail.com|
+|Bcc||bcc@mail.com, bcc2@mail.com|
 
-### Listar Carpetas
+### List Folders
   
-Devuelve todas las carpetas
-|Parámetros|Descripción|ejemplo|
+List all Folders
+|Parameters|Description|example|
 | --- | --- | --- |
-|Asignar resultado a variable||Variable|
+|Asign result to var||Variable|
 
-### Marcar email como no leído
+### Mark email as unread
   
-Marcar email como no leído
-|Parámetros|Descripción|ejemplo|
+Mark email as unread
+|Parameters|Description|example|
 | --- | --- | --- |
-|Nombre Carpeta||inbox|
-|ID del email||Ingrese ID del email|
+|Folder Name||inbox|
+|Email ID||Ingrese ID del email|
 
-### Descargar adjuntos por ID
+### Download attachments by ID
   
-Descarga adjuntos por ID y los guardar en la carpeta especificada
-|Parámetros|Descripción|ejemplo|
+Download attachments by ID and save them in the specified folder
+|Parameters|Description|example|
 | --- | --- | --- |
-|ID del email||345|
-|Carpeta||inbox|
-|Ruta para descargar adjuntos||C:\User\Desktop|
+|Email ID||345|
+|Folder||inbox|
+|Path for download attachment||C:\User\Desktop|
 
-### Cerrar Conexión
+### Close Server
   
-Cierra la conexión del servidor
-|Parámetros|Descripción|ejemplo|
+Close server connection
+|Parameters|Description|example|
 | --- | --- | --- |

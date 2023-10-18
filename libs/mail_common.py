@@ -70,6 +70,8 @@ class Mail:
 
 
     def add_body(self, msg, body):
+        if not body:
+            body = ""
         body = body.replace("\n", "<br>")
                 
         if not "src" in body:
