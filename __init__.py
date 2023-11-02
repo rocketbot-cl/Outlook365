@@ -247,14 +247,13 @@ try:
         to_ = GetParams('email')
         cc = GetParams('cc')
         bcc = GetParams('bcc')
-        attached_file = GetParams('attached_file')
 
         if cc is None:
             cc = ""
         if bcc is None:
             bcc = ""
 
-        outlook_365.forward_email(id_, "inbox", attached_file, to_, cc, bcc)
+        outlook_365.forward_email(id_, "inbox", to_, cc, bcc)
 
     if module == "list_folders":
         result = GetParams('var')

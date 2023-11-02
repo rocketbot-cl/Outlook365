@@ -137,9 +137,6 @@ class Mail:
 
         return msg
 
-    def add_attachments_from_mail(self, mail):
-        pass
-
     def create_mail(self, from_, to, subject, cc="", bcc="", type_="message", reference=None):
         type_email = {
             "multipart": MIMEMultipart('related'),
@@ -314,18 +311,35 @@ class Mail:
         self.imap.logout()
         raise Exception(result[0])
 
-    def forward_email(self, id_, folder, att_folder, to_, cc_="", bcc_=""):
-        mail_obj = self.read_mail(id_, folder, att_folder)
-        att_file = [os.path.join(att_folder, filename)
-                    for filename in mail_obj["files"]]
-        self.send_mail(
-            to=to_,
-            cc=cc_,
-            bcc=bcc_,
-            subject='Forward: ' + mail_obj["subject"],
-            attachments_path=att_file,
-            body=mail_obj["body"],
-            type_="multipart")
+    def forward_email(self, id_, folder, to_, cc_="", bcc_=""):
+        
+        type, data = self.get_email_from_id(id_, folder)
+        self.imap.logout()
+
+        raw_email = data[0][1]
+
+        try:
+            raw_email_string = raw_email.decode('utf-8')
+        except:
+            raw_email_string = raw_email.decode('latin-1')
+        mail_ = email.message_from_string(raw_email_string)
+        
+        subject = 'Fwd: ' + mail_["Subject"]
+        
+        msg = self.create_mail(self.user, to_, subject,
+                                cc=cc_, bcc=bcc_, type_='multipart')
+        
+        msg.attach(mail_)
+
+        text = msg.as_string()
+        
+        server = self.connect_smtp()
+
+        sendTo  = to_.split(",") + cc_.split(",") + bcc_.split(",")
+
+        server.sendmail(self.user, sendTo, text.encode('utf-8'))
+        
+        server.close()
 
     def mark_as_unread(self, id_, folder):
         type, data = self.get_email_from_id(id_, folder, uid="(UID)")
