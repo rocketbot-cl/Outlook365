@@ -4,12 +4,15 @@
 
 # Outlook365
   
-Módulo para realizar acciones en Outlook Office 365  
+Send, read, reply to emails and manage your Outlook mailbox.  
 
-## Howto install this module
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
+
+## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## Overview
@@ -54,18 +57,6 @@ Download attachments by ID and save them in the specified folder
 13. Close Server  
 Close server connection  
 
-
-
-### Changes
-Wed Sep 1 16:03:04 2021  Merge branch master of https://github.com/rocketbot-cl/Outlook365
-Wed Aug 4 15:06:39 2021  
-Merge pull request #2 from rocketbot-cl/QA
-Fri Jul 23 13:33:17 2021  Merge pull request #1 from rocketbot-cl/QA
-Mon Apr 
-19 11:28:09 2021  Fix read email.
-Wed Apr 1 10:11:23 2020  Merge branch master of https://github.com/rocketbot-
-cl/Outlook365
-Tue Jan 28 14:30:08 2020  Merge branch master of https://github.com/rocketbot-cl/Outlook365
 
 ----
 ### OS
