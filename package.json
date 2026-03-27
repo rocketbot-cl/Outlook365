@@ -38,6 +38,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Configuração do Servidor",
+        "description": "Configuração do Servidor",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -46,7 +52,8 @@
             "placeholder": "user@example.com",
             "title": {
               "es": "User:",
-              "en": "Usuario:"
+              "en": "Usuario:",
+              "pr": "Usuário:"
             },
             "id": "from",
             "css": "col-md-8"
@@ -56,7 +63,8 @@
             "placeholder": "99",
             "title": {
               "es": "Timeout:",
-              "en": "Timeout:"
+              "en": "Timeout:",
+              "pr": "Timeout:"
             },
             "id": "timeout",
             "css": "col-md-4"
@@ -66,7 +74,8 @@
             "placeholder": "******",
             "title": {
               "es": "Contraseña:",
-              "en": "Password:"
+              "en": "Password:",
+              "pr": "Senha:"
             },
             "id": "password",
             "css": "col-md-6"
@@ -79,11 +88,13 @@
             },
             "title": {
               "es": "Sin conexión IMAP",
-              "en": "Not IMAP connection"
+              "en": "Not IMAP connection",
+              "pr": "Não é conexão IMAP"
             },
             "description": {
               "es": "Si se marca esta casilla, evita la conexión IMAP.",
-              "en": "If this box is marked, it avoids IMAP connection."
+              "en": "If this box is marked, it avoids IMAP connection.",
+              "pr": "Se esta caixa estiver marcada, evita a conexão IMAP."
             },
             "id": "not_imap",
             "css": "col-md-12"
@@ -93,11 +104,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Assign result to a Variable:"
+              "en": "Assign result to a Variable:",
+              "pr": "Atribuir resultado a uma variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Variable name without {}"
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var_",
@@ -131,6 +144,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Enviar Email",
+        "description": "Envie um email, antes você deve configurar o servidor",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -139,11 +158,13 @@
             "placeholder": "to@mail.com, to2@mail.com",
             "title": {
               "es": "Para:",
-              "en": "To:"
+              "en": "To:",
+              "pr": "Para:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "to",
             "css": "col-md-12"
@@ -153,11 +174,13 @@
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
               "es": "Cc:",
-              "en": "Cc:"
+              "en": "Cc:",
+              "pr": "Cc:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "cc",
             "css": "col-md-12"
@@ -167,11 +190,13 @@
             "placeholder": "bcc@mail.com, bcc2@mail.com",
             "title": {
               "es": "Bcc:",
-              "en": "Bcc:"
+              "en": "Bcc:",
+              "pr": "Bcc:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -181,7 +206,8 @@
             "placeholder": "Nuevo mail",
             "title": {
               "es": "Asunto:",
-              "en": "Subject:"
+              "en": "Subject:",
+              "pr": "Assunto:"
             },
             "id": "subject",
             "css": "col-md-12"
@@ -191,11 +217,13 @@
             "placeholder": "Esto es una prueba",
             "title": {
               "es": "Mensaje:",
-              "en": "Body:"
+              "en": "Body:",
+              "pr": "Corpo:"
             },
             "help": {
               "es": "Puede contener html",
-              "en": "Can contain html"
+              "en": "Can contain html",
+              "pr": "Pode conter html"
             },
             "id": "body",
             "css": "col-md-12"
@@ -204,15 +232,18 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\test.txt",
-              "en": "C:\\User\\Desktop\\test.txt"
+              "en": "C:\\User\\Desktop\\test.txt",
+              "pr": "C:\\User\\Desktop\\test.txt"
             },
             "title": {
               "es": "Archivo Adjunto:",
-              "en": "Attached File:"
+              "en": "Attached File:",
+              "pr": "Arquivo Anexo:"
             },
             "help": {
               "es": "Opción para solo un adjunto, si además se ingresa carpeta sólo se considerará esta última",
-              "en": "Option for only one attachment, if you also enter a folder only the latter will be considered"
+              "en": "Option for only one attachment, if you also enter a folder only the latter will be considered",
+              "pr": "Opção para apenas um anexo, se você também inserir uma pasta, apenas esta última será considerada"
             },
             "id": "attached_file",
             "css": "col-md-12"
@@ -221,15 +252,18 @@
             "type": "folder_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\Files",
-              "en": "C:\\User\\Desktop\\Files"
+              "en": "C:\\User\\Desktop\\Files",
+              "pr": "C:\\User\\Desktop\\Files"
             },
             "title": {
               "es": "Carpeta (Varios archivos):",
-              "en": "Folder (Multiple files):"
+              "en": "Folder (Multiple files):",
+              "pr": "Pasta (Vários arquivos):"
             },
             "help": {
               "es": "Para varios adjuntos, ingresar ruta a carpeta",
-              "en": "For several attachments, enter folder path"
+              "en": "For several attachments, enter folder path",
+              "pr": "Para vários anexos, insira o caminho da pasta"
             },
             "id": "attached_folder",
             "css": "col-md-12"
@@ -238,15 +272,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Cuerpo de email contiene HTML",
-              "en": "Email body contains HTML"
+              "en": "Email body contains HTML",
+              "pr": "Corpo do email contém HTML"
             },
             "description": {
               "es": "Marcar esta casilla si el cuerpo del email contiene HTML.",
-              "en": "Check this box if the email body contains HTML."
+              "en": "Check this box if the email body contains HTML.",
+              "pr": "Marque esta caixa se o corpo do email contiver HTML."
             },
             "id": "has_html",
             "css": "col-md-6"
@@ -279,6 +316,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Lista todos os email",
+        "description": "Lista todos os email, você pode especificar um filtro",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -287,11 +330,13 @@
             "placeholder": "SUBJECT \"COMPRA*\"",
             "title": {
               "es": "Filtro:",
-              "en": "Filter:"
+              "en": "Filter:",
+              "pr": "Filtro:"
             },
             "help": {
               "es": "Dejar vacío para traerlos todos",
-              "en": "Empty for get all"
+              "en": "Empty for get all",
+              "pr": "Vazio para obter todos"
             },
             "id": "filtro",
             "css": "col-md-12"
@@ -301,11 +346,14 @@
             "placeholder": "345",
             "title": {
               "es": "Carpeta",
-              "en": "Folder"
+              "en": "Folder",
+              "pr": "Pasta"
+
             },
             "help": {
               "es": "Por defecto, Inbox",
-              "en": "By default, Inbox"
+              "en": "By default, Inbox",
+              "pr": "Por padrão, Inbox"
             },
             "id": "folder",
             "css": "col-md-6"
@@ -315,11 +363,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:"
+              "en": "Asign to var:",
+              "pr": "Atribuir a variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}"
+              "en": "Var name whitout {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var_",
@@ -353,6 +403,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Lista emails não lidos",
+        "description": "Lista emails não lidos",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -361,11 +417,13 @@
             "placeholder": "SUBJECT \"COMPRA*\"",
             "title": {
               "es": "Filtro:",
-              "en": "Filter:"
+              "en": "Filter:",
+              "pr": "Filtro:"
             },
             "help": {
               "es": "Dejar vacío para traerlos todos",
-              "en": "Empty for get all"
+              "en": "Empty for get all",
+              "pr": "Vazio para obter todos"
             },
             "id": "filtro",
             "css": "col-md-12"
@@ -375,11 +433,13 @@
             "placeholder": "inbox",
             "title": {
               "es": "Carpeta",
-              "en": "Folder"
+              "en": "Folder",
+              "pr": "Pasta"
             },
             "help": {
               "es": "Por defecto, Inbox",
-              "en": "By default, Inbox"
+              "en": "By default, Inbox",
+              "pr": "Por padrão, Inbox"
             },
             "id": "folder",
             "css": "col-md-6"
@@ -389,11 +449,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:"
+              "en": "Asign to var:",
+              "pr": "Atribuir a variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}"
+              "en": "Var name whitout {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var_",
@@ -427,6 +489,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Ler email por ID",
+        "description": "Ler email por ID",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -435,7 +503,8 @@
             "placeholder": "345",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:"
+              "en": "Email ID:",
+              "pr": "ID do email:"
             },
             "id": "id_",
             "css": "col-md-6"
@@ -445,11 +514,13 @@
             "placeholder": "inbox",
             "title": {
               "es": "Carpeta",
-              "en": "Folder"
+              "en": "Folder",
+              "pr": "Pasta"
             },
             "help": {
               "es": "Por defecto, Inbox",
-              "en": "By default, Inbox"
+              "en": "By default, Inbox",
+              "pr": "Por padrão, Inbox"
             },
             "id": "folder",
             "css": "col-md-6"
@@ -459,11 +530,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Asign to var:"
+              "en": "Asign to var:",
+              "pr": "Atribuir a variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name whitout {}"
+              "en": "Var name whitout {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var_",
@@ -474,7 +547,8 @@
             "placeholder": "C:\\User\\Desktop",
             "title": {
               "es": "Ruta para descargar adjuntos:",
-              "en": "Path for download attachment:"
+              "en": "Path for download attachment:",
+              "pr": "Caminho para baixar anexos:"
             },
             "id": "att_folder",
             "css": "col-md-6"
@@ -483,15 +557,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Cuerpo de email en HTML",
-              "en": "Email HTML body"
+              "en": "Email HTML body",
+              "pr": "Corpo do email em HTML"
             },
             "description": {
               "es": "Si se marca esta casilla, devolvera el cuerpo del email en versión HTML.",
-              "en": "If this box is marked, will bring the HTML version of email body."
+              "en": "If this box is marked, will bring the HTML version of email body.",
+              "pr": "Se esta caixa for marcada, trará a versão HTML do corpo do email."
             },
             "id": "not_parsed",
             "css": "col-md-12"
@@ -524,6 +601,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Criar Pasta",
+        "description": "Cria uma pasta",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -532,7 +615,8 @@
             "placeholder": "Ingrese nombre de la carpeta",
             "title": {
               "es": "Nombre Carpeta:",
-              "en": "Folder Name:"
+              "en": "Folder Name:",
+              "pr": "Nome da Pasta:"
             },
             "id": "folder_name",
             "css": "col-md-12"
@@ -565,6 +649,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Mover email para pasta",
+        "description": "Move email para pasta",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -573,7 +663,8 @@
             "placeholder": "Ingrese ID del email",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:"
+              "en": "Email ID:",
+              "pr": "ID do email:"
             },
             "id": "id_",
             "css": "col-md-12"
@@ -583,7 +674,8 @@
             "placeholder": "test",
             "title": {
               "es": "Carpeta de destino:",
-              "en": "Folder name to send:"
+              "en": "Folder name to send:",
+              "pr": "Nome da pasta para enviar:"
             },
             "id": "label_",
             "css": "col-md-12"
@@ -593,7 +685,8 @@
             "placeholder": "test",
             "title": {
               "es": "Nombre de la carpeta de origen:",
-              "en": "Source folder name:"
+              "en": "Source folder name:",
+              "pr": "Nome da pasta de origem:"
             },
             "id": "from",
             "css": "col-md-12"
@@ -603,11 +696,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Asign result to var:"
+              "en": "Asign result to var:",
+              "pr": "Atribuir resultado para variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name without {}"
+              "en": "Var name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var",
@@ -641,6 +736,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Responder email por ID",
+        "description": "Responder email por ID",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -649,7 +750,8 @@
             "placeholder": "355",
             "title": {
               "es": "ID Email",
-              "en": "Email ID"
+              "en": "Email ID",
+              "pr": "ID do email"
             },
             "id": "id_",
             "css": "col-md-6"
@@ -659,7 +761,8 @@
             "placeholder": "inbox",
             "title": {
               "es": "Carpeta del mail a responder",
-              "en": "Email Folder to reply"
+              "en": "Email Folder to reply",
+              "pr": "Pasta do email para responder"
             },
             "id": "folder",
             "css": "col-md-6"
@@ -669,11 +772,13 @@
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
               "es": "Cc:",
-              "en": "Cc:"
+              "en": "Cc:",
+              "pr": "Cc:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "cc",
             "css": "col-md-12"
@@ -683,11 +788,13 @@
             "placeholder": "bcc@mail.com, bcc2@mail.com",
             "title": {
               "es": "Copia oculta:",
-              "en": "Bcc:"
+              "en": "Bcc:",
+              "pr": "Cópia oculta:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -697,7 +804,8 @@
             "placeholder": "Body",
             "title": {
               "es": "Mensaje:",
-              "en": "Body:"
+              "en": "Body:",
+              "pr": "Corpo:"
             },
             "id": "body",
             "css": "col-md-12"
@@ -706,11 +814,13 @@
             "type": "file_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\test.txt",
-              "en": "C:\\User\\Desktop\\test.txt"
+              "en": "C:\\User\\Desktop\\test.txt",
+              "pr": "C:\\User\\Desktop\\test.txt"
             },
             "title": {
               "es": "Archivo Adjunto:",
-              "en": "Attached File:"
+              "en": "Attached File:",
+              "pr": "Arquivo Anexo:"
             },
             "id": "attached_file",
             "css": "col-md-12"
@@ -719,15 +829,18 @@
             "type": "folder_select",
             "placeholder": {
               "es": "C:\\User\\Desktop\\Files",
-              "en": "C:\\User\\Desktop\\Files"
+              "en": "C:\\User\\Desktop\\Files",
+              "pr": "C:\\User\\Desktop\\Files"
             },
             "title": {
               "es": "Carpeta (Varios archivos):",
-              "en": "Folder (Multiple files):"
+              "en": "Folder (Multiple files):",
+              "pr": "Pasta (Vários arquivos):"
             },
             "help": {
               "es": "Para varios adjuntos, ingresar ruta a carpeta",
-              "en": "For several attachments, enter folder path"
+              "en": "For several attachments, enter folder path",
+              "pr": "Para vários anexos, insira o caminho da pasta"
             },
             "id": "attached_folder",
             "css": "col-md-12"
@@ -760,6 +873,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Encaminhar email por ID",
+        "description": "Encaminhar email por ID",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -768,7 +887,8 @@
             "placeholder": "355",
             "title": {
               "es": "ID Email",
-              "en": "Email ID"
+              "en": "Email ID",
+              "pr": "ID do email"
             },
             "id": "id_",
             "css": "col-md-12"
@@ -778,7 +898,8 @@
             "placeholder": "test@email.com",
             "title": {
               "es": "Email:",
-              "en": "Email:"
+              "en": "Email:",
+              "pr": "Email:"
             },
             "id": "email",
             "css": "col-md-12"
@@ -788,7 +909,8 @@
             "placeholder": "cc@mail.com, cc2@mail.com",
             "title": {
               "es": "Cc:",
-              "en": "Cc:"
+              "en": "Cc:",
+              "pr": "Cc:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
@@ -803,11 +925,13 @@
             "title": {
               "es": "Copia oculta:",
               "en": "Bcc:",
-              "cn": "Bcc:"
+              "cn": "Bcc:",
+              "pr": "Bcc:"
             },
             "help": {
               "es": "Para varios destinatarios separar por coma",
-              "en": "For multiple recipients, comma separated"
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgula"
             },
             "id": "bcc",
             "css": "col-md-12"
@@ -840,6 +964,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Listar Pastas",
+        "description": "Retorna todas as pastas",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -848,11 +978,13 @@
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
-              "en": "Asign result to var:"
+              "en": "Asign result to var:",
+              "pr": "Atribuir resultado para variável:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
-              "en": "Var name without {}"
+              "en": "Var name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "remove_vars": true,
             "id": "var",
@@ -886,6 +1018,12 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Marcar email como não lido",
+        "description": "Marcar email como não lido",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -894,7 +1032,8 @@
             "placeholder": "inbox",
             "title": {
               "es": "Nombre Carpeta:",
-              "en": "Folder Name:"
+              "en": "Folder Name:",
+              "pr": "Nome da Pasta:"
             },
             "id": "folder",
             "css": "col-md-12"
@@ -904,7 +1043,8 @@
             "placeholder": "Ingrese ID del email",
             "title": {
               "es": "ID del email:",
-              "en": "Email ID:"
+              "en": "Email ID:",
+              "pr": "ID do email:"
             },
             "id": "id_",
             "css": "col-md-12"
@@ -937,6 +1077,12 @@
           "title_options": "Seleccione una opción",
           "options": null
         },
+        "pr": {
+          "title": "Baixar anexos por ID",
+          "description": "Baixe anexos por ID e salve-os na pasta especificada",
+          "title_options": "Selecione uma opção",
+          "options": null
+        },
         "form": {
           "css": "modal-lg",
           "inputs": [
@@ -945,7 +1091,8 @@
               "placeholder": "345",
               "title": {
                 "es": "ID del email:",
-                "en": "Email ID:"
+                "en": "Email ID:",
+                "pr": "ID do email:"
               },
               "id": "id_",
               "css": "col-md-6"
@@ -955,11 +1102,13 @@
               "placeholder": "inbox",
               "title": {
                 "es": "Carpeta",
-                "en": "Folder"
+                "en": "Folder",
+                "pr": "Pasta"
               },
               "help": {
                 "es": "Por defecto, Inbox",
-                "en": "By default, Inbox"
+                "en": "By default, Inbox",
+                "pr": "Por padrão, Inbox"
               },
               "id": "folder",
               "css": "col-md-6"
@@ -969,7 +1118,8 @@
               "placeholder": "C:\\User\\Desktop",
               "title": {
                 "es": "Ruta para descargar adjuntos:",
-                "en": "Path for download attachment:"
+                "en": "Path for download attachment:",
+                "pr": "Caminho para baixar anexos:"
               },
               "id": "att_folder",
               "css": "col-md-6"
@@ -1000,6 +1150,12 @@
         "title": "Cerrar Conexión",
         "description": "Cierra la conexión del servidor",
         "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Fechar Conexão",
+        "description": "Fecha a conexão do servidor",
+        "title_options": "Selecione uma opção",
         "options": null
       },
       "form": {

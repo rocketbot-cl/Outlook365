@@ -3,17 +3,19 @@
 
 
 # Outlook365
-  
-Envia, lee, responde correos y gestiona tu casilla de Outlook.  
+
+Envia, lee, responde correos y gestiona tu casilla de Outlook.
 
 *Read this in other languages: [English](Manual_Outlook365.md), [Português](Manual_Outlook365.pr.md), [Español](Manual_Outlook365.es.md)*
-  
+
 ![banner](imgs/Banner_Outlook365.png)
 ## Como instalar este módulo
-  
+
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
-2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.
+
+
 
 ## Como usar este modulo
 
@@ -27,7 +29,7 @@ Para crear una nueva contraseña de aplicación para una aplicación o dispositi
 ## Descripción de los comandos
 
 ### Configurar Servidor
-  
+
 Configurar Servidor
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -38,7 +40,7 @@ Configurar Servidor
 |Asignar resultado a variable||Variable|
 
 ### Enviar Email
-  
+
 Envia un email, previamente debe configurar el servidor
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -49,9 +51,10 @@ Envia un email, previamente debe configurar el servidor
 |Mensaje||Esto es una prueba|
 |Archivo Adjunto||C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)||C:\User\Desktop\Files|
+|Cuerpo de email contiene HTML|Marcar esta casilla si el cuerpo del email contiene HTML.||
 
 ### Lista todos los email
-  
+
 Lista todos los email, se puede especificar un filtro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -60,7 +63,7 @@ Lista todos los email, se puede especificar un filtro
 |Asignar a variable||Variable|
 
 ### Lista emails no leídos
-  
+
 Lista emails no leídos
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -69,7 +72,7 @@ Lista emails no leídos
 |Asignar a variable||Variable|
 
 ### Leer email por ID
-  
+
 Leer email por ID
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -80,14 +83,14 @@ Leer email por ID
 |Cuerpo de email en HTML|Si se marca esta casilla, devolvera el cuerpo del email en versión HTML.||
 
 ### Crear Carpeta
-  
+
 Crea una carpeta
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Nombre Carpeta||Ingrese nombre de la carpeta|
 
 ### Mover email a carpeta
-  
+
 Mueve email a carpeta
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -97,7 +100,7 @@ Mueve email a carpeta
 |Asignar resultado a variable||Variable|
 
 ### Responder email por ID
-  
+
 Responder email por ID
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -110,7 +113,7 @@ Responder email por ID
 |Carpeta (Varios archivos)||C:\User\Desktop\Files|
 
 ### Reenviar email por ID
-  
+
 Reenviar email por ID
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -120,14 +123,14 @@ Reenviar email por ID
 |Copia oculta||bcc@mail.com, bcc2@mail.com|
 
 ### Listar Carpetas
-  
+
 Devuelve todas las carpetas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Asignar resultado a variable||Variable|
 
 ### Marcar email como no leído
-  
+
 Marcar email como no leído
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -135,7 +138,7 @@ Marcar email como no leído
 |ID del email||Ingrese ID del email|
 
 ### Descargar adjuntos por ID
-  
+
 Descarga adjuntos por ID y los guardar en la carpeta especificada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
@@ -144,7 +147,7 @@ Descarga adjuntos por ID y los guardar en la carpeta especificada
 |Ruta para descargar adjuntos||C:\User\Desktop|
 
 ### Cerrar Conexión
-  
+
 Cierra la conexión del servidor
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
