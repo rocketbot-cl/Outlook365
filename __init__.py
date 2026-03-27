@@ -105,6 +105,8 @@ try:
         attached_file = GetParams('attached_file')
         files = GetParams('attached_folder')
         
+        has_html = GetParams('has_html')
+        
         type_ = 'multipart'
 
         if cc is None:
@@ -123,7 +125,8 @@ try:
             bcc=bcc,
             attachments_path=[attached_file, files],
             type_=type_,
-            body=body_
+            body=body_,
+            has_html=has_html
         )
 
     if module == "get_mail":
