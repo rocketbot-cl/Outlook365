@@ -18,4 +18,10 @@ Para crear una nueva contraseña de aplicación para una aplicación o dispositi
 
 ---
 
+## Como utilizar este módulo
 
+Para criar uma nova palavra-passe de aplicação para uma aplicação ou dispositivo, siga os passos abaixo:
+1. Vá para a página de noções básicas de segurança (https://account.microsoft.com/security?refd=support.microsoft.com) e faça login na sua conta Microsoft.
+2. Selecione Mais opções de segurança.
+3. Em Senhas de aplicativo, selecione Criar uma nova senha de aplicativo. Uma nova senha de aplicativo é gerada e aparece na tela.
+4. Digite esta senha de aplicativo onde você digitaria sua senha normal da conta Microsoft no aplicativo.

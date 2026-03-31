@@ -69,10 +69,25 @@ class Mail:
         return self.imap
 
 
-    def add_body(self, msg, body):
+    def add_body(self, msg, body, has_html):
         if not body:
             body = ""
-        body = body.replace("\n", "<br>")
+
+        if has_html:
+
+            parts = re.split(r'(<[^>]+>)', body)
+
+            for index, text in enumerate(parts):
+                is_text = index % 2 == 0
+                has_content = re.search(r'\S', text)
+
+                if is_text and has_content:
+                    parts[index] = text.replace('\n', '<br>')
+
+            body = "".join(parts)
+
+        else:
+            body = body.replace("\n", "<br>")
                 
         if not "src" in body:
             msg.attach(MIMEText(body, 'html'))
@@ -82,13 +97,15 @@ class Mail:
             path = match[0]
             
             if path.startswith(("http", "https")):
-                msg.attach(MIMEText(body, 'html'))
+                if not has_html:
+                    msg.attach(MIMEText(body, 'html'))
                 continue
 
             image_cid = make_msgid()
             body = body.replace(path, "cid:" + image_cid[1:-1])
 
-            msg.attach(MIMEText(body, 'html'))
+            if not has_html:
+                msg.attach(MIMEText(body, 'html'))
             
             img_ = open(path, 'rb')
             image = MIMEImage(img_.read())
@@ -98,6 +115,9 @@ class Mail:
             image.add_header("Content-Transfer-Encoding", "base64")
             msg.attach(image)
 
+        if has_html: #We do it this way to not modify the behaviour of the bots in production
+            msg.attach(MIMEText(body, 'html'))
+            
             # Codigo original, se cambia porque no reconoce MIMEImage si el path es de un archivo local
             # with open(path, 'rb') as img:
 
@@ -155,12 +175,12 @@ class Mail:
         mail['Bcc'] = bcc
         return mail
 
-    def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="", type_="message", reference=None):
+    def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="", type_="message", reference=None, has_html= False):
 
         msg = self.create_mail(self.user, to, subject,
                                cc=cc, type_=type_, reference=reference)
 
-        msg = self.add_body(msg, body)
+        msg = self.add_body(msg, body, has_html)
         msg = self.add_attachments(msg, attachments_path)
        
         text = msg.as_string()
