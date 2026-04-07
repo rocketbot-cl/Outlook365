@@ -117,6 +117,8 @@ try:
             attached_file = ""
         if files is None:
             files = ""
+        if has_html is None:
+            has_html = False
 
         outlook_365.send_mail(
             to,
