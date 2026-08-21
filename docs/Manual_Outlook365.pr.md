@@ -15,6 +15,8 @@ Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.
 
+
+
 ## Como utilizar este módulo
 
 Para criar uma nova palavra-passe de aplicação para uma aplicação ou dispositivo, siga os passos abaixo:
@@ -22,8 +24,6 @@ Para criar uma nova palavra-passe de aplicação para uma aplicação ou disposi
 2. Selecione Mais opções de segurança.
 3. Em Senhas de aplicativo, selecione Criar uma nova senha de aplicativo. Uma nova senha de aplicativo é gerada e aparece na tela.
 4. Digite esta senha de aplicativo onde você digitaria sua senha normal da conta Microsoft no aplicativo.
-
-
 ## Descrição do comando
 
 ### Configuração do Servidor
@@ -49,6 +49,7 @@ Envie um email, antes você deve configurar o servidor
 |Corpo||Esto es una prueba|
 |Arquivo Anexo||C:\User\Desktop\test.txt|
 |Pasta (Vários arquivos)||C:\User\Desktop\Files|
+|Firma|Caminho para a firma HTML a ser adicionada no final do email.|C:\User\Desktop\firm.html|
 |Corpo do email contém HTML|Marque esta caixa se o corpo do email contiver HTML.||
 
 ### Lista todos os email
