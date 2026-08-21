@@ -51,6 +51,7 @@ Envia un email, previamente debe configurar el servidor
 |Mensaje||Esto es una prueba|
 |Archivo Adjunto||C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)||C:\User\Desktop\Files|
+|Firma|Path a firma HTML a agregar al final del mail.|C:\User\Desktop\firm.html|
 |Cuerpo de email contiene HTML|Marcar esta casilla si el cuerpo del email contiene HTML.||
 
 ### Lista todos los email
