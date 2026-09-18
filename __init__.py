@@ -104,6 +104,7 @@ try:
         bcc = GetParams('bcc')
         attached_file = GetParams('attached_file')
         files = GetParams('attached_folder')
+        firm = GetParams('firm')
         
         has_html = GetParams('has_html')
         
@@ -117,6 +118,8 @@ try:
             attached_file = ""
         if files is None:
             files = ""
+        if firm is None:
+            firm = ""
         if has_html is None:
             has_html = False
 
@@ -128,7 +131,8 @@ try:
             attachments_path=[attached_file, files],
             type_=type_,
             body=body_,
-            has_html=has_html
+            has_html=has_html,
+            firm=firm
         )
 
     if module == "get_mail":

@@ -36,6 +36,18 @@ def get_regex_group(regex, string):
     return [[group for group in match.groups()] for match in matches]
 
 
+def read_text_file(path):
+    for encoding in ("utf-8-sig", "utf-8", "latin-1", "cp1252"):
+        try:
+            with open(path, "r", encoding=encoding) as file_:
+                return file_.read()
+        except UnicodeDecodeError:
+            continue
+
+    with open(path, "r", encoding="utf-8", errors="replace") as file_:
+        return file_.read()
+
+
 class Mail:
 
     def __init__(self, user, pwd, timeout, smtp_host, smtp_port, imap_host, imap_port, pop_host=None, pop_port=None):
@@ -69,7 +81,7 @@ class Mail:
         return self.imap
 
 
-    def add_body(self, msg, body, has_html):
+    def add_body(self, msg, body, has_html, firm=""):
         if not body:
             body = ""
 
@@ -88,35 +100,52 @@ class Mail:
 
         else:
             body = body.replace("\n", "<br>")
+
+        firm_base_path = ""
+        if firm and os.path.isfile(firm):
+            firm_base_path = os.path.dirname(os.path.abspath(firm))
+            body = "{}<br><br>{}".format(body, read_text_file(firm))
                 
         if not "src" in body:
             msg.attach(MIMEText(body, 'html'))
             return msg
 
-        for match in get_regex_group(r"src=\"(.*)\"", body):
-            path = match[0]
+        inline_images = []
+        for match in get_regex_group(r"""src=["']([^"']+)["']""", body):
+            original_path = match[0]
+            path = original_path
             
-            if path.startswith(("http", "https")):
-                if not has_html:
-                    msg.attach(MIMEText(body, 'html'))
+            if path.startswith(("http", "https", "data:", "cid:")):
+                continue
+
+            if firm_base_path and not os.path.isabs(path):
+                path = os.path.join(firm_base_path, path)
+
+            if not os.path.isfile(path):
                 continue
 
             image_cid = make_msgid()
-            body = body.replace(path, "cid:" + image_cid[1:-1])
+            body = body.replace(original_path, "cid:" + image_cid[1:-1])
+            inline_images.append((path, image_cid))
 
-            if not has_html:
-                msg.attach(MIMEText(body, 'html'))
-            
-            img_ = open(path, 'rb')
-            image = MIMEImage(img_.read())
-            img_.close()
+        msg.attach(MIMEText(body, 'html'))
+
+        for path, image_cid in inline_images:
+            with open(path, 'rb') as img_:
+                image_data = img_.read()
+
+            mime_type = mimetypes.guess_type(path)[0]
+            if mime_type and mime_type.startswith("image/") and mime_type != "image/svg+xml":
+                image = MIMEImage(image_data)
+            else:
+                maintype, subtype = (mime_type or "application/octet-stream").split("/", 1)
+                image = MIMEBase(maintype, subtype)
+                image.set_payload(image_data)
+                encoders.encode_base64(image)
+
             image.add_header('Content-ID', image_cid)
             image.add_header('Content-Disposition', 'inline', filename=os.path.basename(path))
-            image.add_header("Content-Transfer-Encoding", "base64")
             msg.attach(image)
-
-        if has_html: #We do it this way to not modify the behaviour of the bots in production
-            msg.attach(MIMEText(body, 'html'))
             
             # Codigo original, se cambia porque no reconoce MIMEImage si el path es de un archivo local
             # with open(path, 'rb') as img:
@@ -175,12 +204,12 @@ class Mail:
         mail['Bcc'] = bcc
         return mail
 
-    def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="", type_="message", reference=None, has_html= False):
+    def send_mail(self, to, subject, attachments_path=[], body="", cc="", bcc="", type_="message", reference=None, has_html=False, firm=""):
 
         msg = self.create_mail(self.user, to, subject,
                                cc=cc, type_=type_, reference=reference)
 
-        msg = self.add_body(msg, body, has_html)
+        msg = self.add_body(msg, body, has_html, firm)
         msg = self.add_attachments(msg, attachments_path)
        
         text = msg.as_string()
@@ -372,8 +401,3 @@ class Mail:
             raise Exception(result[0])
 
         self.imap.logout()
-
-
-
-        
-

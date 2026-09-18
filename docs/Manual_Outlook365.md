@@ -49,6 +49,7 @@ Send email, before you must configurate the server
 |Body||Esto es una prueba|
 |Attached File||C:\User\Desktop\test.txt|
 |Folder (Multiple files)||C:\User\Desktop\Files|
+|Firm|Path to the HTML firm to be added at the end of the email.|C:\User\Desktop\firm.html|
 |Email body contains HTML|Check this box if the email body contains HTML.||
 
 ### List all email
